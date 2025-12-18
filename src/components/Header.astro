@@ -1,0 +1,104 @@
+---
+
+---
+
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+          stroke="#3B82F6"
+          stroke-width="2"></path>
+        <path
+          d="M7 12L12 17L17 7"
+          stroke="#3B82F6"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <span class="logo-text">EPM Gen 2.0</span>
+    </div>
+
+    <nav class="nav">
+      <a href="#life-at-eco">Life at Eco</a>
+      <a href="#benefits">Giá trị nhận được</a>
+      <a href="#roadmap">Lộ trình tuyển dụng</a>
+      <a href="#about">Về chúng tôi</a>
+    </nav>
+
+    <a href="#apply" class="btn-primary">Ứng tuyển ngay</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    padding: 1rem 0;
+    background: #fff;
+    /* position: sticky; */
+    top: 0;
+    z-index: 100;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #2563eb;
+  }
+
+  .nav {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav {
+      display: flex;
+    }
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: #1f2937;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav a:hover {
+    color: #2563eb;
+  }
+
+  .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 99px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: #2563eb;
+  }
+</style>
