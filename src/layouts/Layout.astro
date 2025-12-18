@@ -1,4 +1,7 @@
-<!doctype html>
+---
+import "../styles/global.css";
+---
+
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
@@ -17,24 +20,3 @@
     <slot />
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --font-family: "Outfit", sans-serif;
-    --color-primary: #2563eb;
-  }
-  html {
-    font-family: var(--font-family);
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-</style>

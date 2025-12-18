@@ -1,0 +1,183 @@
+/* Thin (100) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Thin Italic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* XLight (200) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Xlight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Xlight Italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Light (300) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Regular (400) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Medium (500) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* SemiBold (600) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy SemiBold Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold (700) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* XBold (800) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy XBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy XBold Italic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Black (900) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Black Italic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Heavy (950) */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('/fonts/svn-gilroy/SVN-Gilroy Heavy.otf') format('opentype');
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}

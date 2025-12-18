@@ -1,10 +1,10 @@
 ---
-
+import "../styles/life-at-eco.css";
 ---
 
 <section class="life-at-eco" id="life-at-eco">
   <div class="container">
-    <div class="header">
+    <div class="life-header">
       <h2>LIFE AT ECO</h2>
       <p class="subtitle">
         Tại Eco Mobile, thông điệp "Do the right thing" là kim chỉ nam trong mọi
@@ -13,7 +13,7 @@
       </p>
     </div>
 
-    <div class="grid">
+    <div class="life-grid">
       <div class="card">
         <div class="icon-box">
           <!-- Sustainable Product Icon -->
@@ -92,77 +92,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .life-at-eco {
-    padding: 5rem 0;
-    background: #fff;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  .header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 4rem auto;
-  }
-
-  h2 {
-    font-size: 2.25rem;
-    color: #2563eb;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-    color: #6b7280;
-    line-height: 1.6;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .card {
-    text-align: center;
-    padding: 2rem;
-    transition: transform 0.2s;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  .icon-box {
-    margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #2563eb;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-    color: #6b7280;
-    line-height: 1.6;
-  }
-</style>

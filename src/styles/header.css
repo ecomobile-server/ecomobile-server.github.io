@@ -1,0 +1,60 @@
+.header {
+  padding: 1rem 10rem;
+  background: #fff;
+  /* position: sticky; */
+  top: 0;
+  z-index: 100;
+}
+
+/* Note: .container is already in global.css, but we keep the flex properties here or use a utility class.
+   Since container is global, we should be careful.
+   Ideally, we should rely on the global container for width/margin/padding,
+   and use a nested element or a specific class for the flex properties of the header layout.
+   For now, I'll create a specific class .header-container in the component to avoid conflict/duplication if I were to change the HTML. */
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #2A6CE0;
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: Montserrat;
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: contents;
+  }
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  line-height: 1.5;
+}
+
+.nav a:hover {
+  color: #2563eb;
+}
+
+/* btn-primary is in global.css now */

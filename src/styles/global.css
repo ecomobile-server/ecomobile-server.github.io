@@ -1,0 +1,52 @@
+@import "./fonts.css";
+
+:root {
+  --font-family: "SVN-Gilroy", "Outfit", sans-serif;
+  --color-primary: #2A6CE0;
+  --color-primary-hover: #1d4ed8;
+  --color-secondary: #0ea5e9;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-background: #ffffff;
+  --color-background-soft: #f9fafb;
+}
+
+html {
+  font-family: var(--font-family);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1.125rem 2.688rem;
+  border-radius: 99px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: background-color 0.2s;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
