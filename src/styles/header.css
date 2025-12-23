@@ -1,60 +1,276 @@
 .header {
-  padding: 1rem 10rem;
+  padding: 1rem 0;
   background: #fff;
   /* position: sticky; */
   top: 0;
   z-index: 100;
 }
 
+/* The header uses the global `.container` element.
+   We override its horizontal padding here to avoid hard-coding padding on `.header`
+   (which would stack with `.container` and break smaller screens). */
+.header .container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 /* Note: .container is already in global.css, but we keep the flex properties here or use a utility class.
    Since container is global, we should be careful.
    Ideally, we should rely on the global container for width/margin/padding,
-   and use a nested element or a specific class for the flex properties of the header layout.
-   For now, I'll create a specific class .header-container in the component to avoid conflict/duplication if I were to change the HTML. */
-
+   and use a nested element or a specific class for the flex properties of the header layout. */
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 64px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.25rem;
   color: #2A6CE0;
   line-height: 1;
+  flex: 0 0 auto;
+}
+
+.logo svg {
+  width: 36px;
+  height: auto;
+  flex: 0 0 auto;
 }
 
 .logo-text {
   font-family: Montserrat;
+  white-space: nowrap;
 }
 
 .nav {
   display: none;
   align-items: center;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .nav {
-    display: contents;
-  }
+  gap: 2.5rem;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-width: 0;
 }
 
 .nav a {
   text-decoration: none;
   color: #212121;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
-  transition: color 0.2s;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  transition: color 0.2s, background-color 0.2s;
   line-height: 1.5;
+  white-space: nowrap;
 }
 
 .nav a:hover {
-  color: #2563eb;
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/* Mobile hamburger (shown below 1024px) */
+.nav-mobile {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.nav-mobile-toggle {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  transition: background-color 0.2s;
+}
+
+.nav-mobile-toggle:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.nav-mobile-toggle:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.nav-mobile[open] .nav-mobile-toggle {
+  background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.nav-mobile-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.nav-mobile-icon {
+  width: 20px;
+  display: grid;
+  gap: 4px;
+}
+
+.nav-mobile-icon span {
+  height: 2px;
+  background: #212121;
+  border-radius: 999px;
+}
+
+.nav-mobile-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 101;
+}
+
+.nav-mobile-panel a {
+  text-decoration: none;
+  color: #212121;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0.75rem 0.75rem;
+  border-radius: 10px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-mobile-panel a:hover {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.nav-mobile-panel a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.header .btn-primary {
+  white-space: nowrap;
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Breakpoints (grouped) */
+@media (min-width: 1190px) {
+  .header .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .logo svg {
+    width: 48px;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  .header .btn-primary {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .header .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .header-container {
+    gap: 2rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .logo svg {
+    width: 61px;
+  }
+
+  .nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .nav a {
+    font-size: 1.125rem;
+  }
+
+  .header .btn-primary {
+    padding: 1.125rem 2.688rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1560px) {
+  .header .container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
+  .nav {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .header .container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+
+  .header-container {
+    gap: 3.5rem;
+  }
+
+  .nav {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .nav a {
+    font-size: 1.25rem;
+  }
 }
 
 /* btn-primary is in global.css now */

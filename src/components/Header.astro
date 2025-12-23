@@ -34,6 +34,41 @@ import "../styles/header.css";
       <a href="#about">Về chúng tôi</a>
     </nav>
 
-    <a href="#apply" class="btn-primary">Ứng tuyển ngay</a>
+    <div class="header-actions">
+      <details class="nav-mobile">
+        <summary class="nav-mobile-toggle" aria-label="Mở menu">
+          <span class="nav-mobile-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </summary>
+
+        <nav class="nav-mobile-panel" aria-label="Menu">
+          <a
+            href="#life-at-eco"
+            onclick="this.closest('details')?.removeAttribute('open')"
+            >Life at Eco</a
+          >
+          <a
+            href="#benefits"
+            onclick="this.closest('details')?.removeAttribute('open')"
+            >Giá trị nhận được</a
+          >
+          <a
+            href="#roadmap"
+            onclick="this.closest('details')?.removeAttribute('open')"
+            >Lộ trình tuyển dụng</a
+          >
+          <a
+            href="#about"
+            onclick="this.closest('details')?.removeAttribute('open')"
+            >Về chúng tôi</a
+          >
+        </nav>
+      </details>
+
+      <a href="#apply" class="btn-primary">Ứng tuyển ngay</a>
+    </div>
   </div>
 </header>
