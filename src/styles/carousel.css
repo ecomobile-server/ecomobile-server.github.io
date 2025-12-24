@@ -1,0 +1,277 @@
+.carousel-section {
+  padding: 0rem 0 4rem 0;
+  background: #fff;
+}
+
+.carousel-container {
+  max-width: 85%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  position: relative;
+}
+
+.carousel-star {
+  position: absolute;
+  top: -60px;
+  left: -51px;
+  z-index: 5;
+  width: 120px;
+  height: 120px;
+}
+
+.carousel-star svg {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 100px;
+  background: #f0f0f0;
+  box-shadow: 0 8px 24px rgba(42, 108, 224, 0.15);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 6;
+  min-height: 400px;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation buttons */
+.carousel-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  transform: none;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #2A6CE0;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+}
+
+.carousel-btn-prev {
+  right: 8rem;
+}
+
+.carousel-btn-next {
+  right: 2.25rem;
+}
+
+/* Indicators */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.indicator.active {
+  background: #2A6CE0;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.indicator:hover {
+  background: #2A6CE0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .carousel-container {
+    max-width: 90%;
+  }
+
+  .carousel-star {
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    left: -41px;
+  }
+
+  .carousel-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .carousel-btn-prev {
+    right: 7rem;
+  }
+
+  .carousel-btn-next {
+    right: 1.5rem;
+  }
+
+  .carousel-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-section {
+    padding: 3rem 0;
+  }
+
+  .carousel-container {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+  .carousel-star {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: -24px;
+  }
+  .carousel-track {
+    aspect-ratio: 16 / 7;
+    min-height: 280px;
+  }
+
+  .carousel-wrapper {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 80px;
+  }
+
+  .carousel-btn {
+    width: 48px;
+    height: 48px;
+    bottom: 1.25rem;
+  }
+
+  .carousel-btn-prev {
+    right: 5.5rem;
+  }
+
+  .carousel-btn-next {
+    right: 1.25rem;
+  }
+
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carousel-indicators {
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .indicator.active {
+    width: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-section {
+    padding: 2rem 0;
+  }
+
+  .carousel-star {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: -8px;
+  }
+
+  .carousel-container {
+    max-width: 100%;
+    padding: 0 0.75rem;
+  }
+
+  .carousel-track {
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+  }
+
+  .carousel-wrapper {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 40px;
+  }
+
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+    bottom: 1rem;
+  }
+
+  .carousel-btn-prev {
+    right: 3.75rem;
+  }
+
+  .carousel-btn-next {
+    right: 0.75rem;
+  }
+
+  .carousel-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .carousel-indicators {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator.active {
+    width: 20px;
+  }
+}

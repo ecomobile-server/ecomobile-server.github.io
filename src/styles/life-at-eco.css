@@ -1,26 +1,28 @@
 .life-at-eco {
-  padding: 5rem 0;
+  padding: 5rem 2rem 3rem 2rem;
   background: #fff;
 }
 
 .life-header {
   text-align: center;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto 4rem auto;
 }
 
 .life-header h2 {
-  font-size: 2.25rem;
-  color: #2563eb;
-  font-weight: 800;
+  font-size: 3.75rem;
+  color: #2A6CE0;
+  font-weight: 600;
   margin-bottom: 1rem;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #6b7280;
-  line-height: 1.6;
+  font-size: 1.5rem;
+  color: #212121;
+  opacity: 0.5;
+  line-height: 1.8;
 }
 
 .life-grid {
@@ -46,20 +48,33 @@
 }
 
 .icon-box {
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  max-width: 12.5rem;
+  height: 12.5rem;
+}
+
+.icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #2563eb;
-  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  color: #2A6CE0;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
 .card p {
-  font-size: 0.95rem;
-  color: #6b7280;
-  line-height: 1.6;
+  font-size: 1.125rem;
+  color: #212121;
+  opacity: 0.5;
+  line-height: 1.8;
+  text-align: left;
+  font-weight: 400;
 }

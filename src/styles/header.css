@@ -53,6 +53,7 @@
 .logo-text {
   font-family: Montserrat;
   white-space: nowrap;
+  display: none;
 }
 
 .nav {
@@ -175,10 +176,15 @@
 
 .header .btn-primary {
   white-space: nowrap;
-  padding: 0.85rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
 }
 
+@media (min-width: 768px) {
+  .logo-text {
+    display: inline;
+  }
+}
 /* Breakpoints (grouped) */
 @media (min-width: 1190px) {
   .header .container {

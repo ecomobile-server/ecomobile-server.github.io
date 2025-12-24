@@ -1,0 +1,185 @@
+---
+import "../styles/carousel.css";
+
+interface Props {
+  images: Array<{
+    src: string;
+    alt: string;
+  }>;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+}
+
+const { images, autoPlay = true, autoPlayInterval = 5000 } = Astro.props;
+---
+
+<section class="carousel-section">
+  <div class="carousel-container">
+    <div class="carousel-star">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M60 0C68.8506 28.6825 91.3049 51.1494 120 60C91.3175 68.8506 68.8506 91.3049 60 120C51.1494 91.3049 28.6825 68.838 0 60C28.6825 51.1494 51.1494 28.6825 60 0Z"
+          fill="#2A6CE0"></path>
+      </svg>
+    </div>
+    <div class="carousel-wrapper">
+      <div
+        class="carousel-track"
+        data-autoplay={autoPlay}
+        data-interval={autoPlayInterval}>
+        {
+          images.map((image, index) => (
+            <div class="carousel-slide" data-index={index}>
+              <img src={image.src} alt={image.alt} />
+            </div>
+          ))
+        }
+      </div>
+
+      <button
+        class="carousel-btn carousel-btn-prev"
+        aria-label="Previous slide">
+        <svg
+          width="29"
+          height="29"
+          viewBox="0 0 29 29"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19.6001 2.80005L8.4001 14L19.6001 25.2"
+            stroke="#2A6CE0"
+            stroke-width="3.2"></path>
+        </svg>
+      </button>
+      <button class="carousel-btn carousel-btn-next" aria-label="Next slide">
+        <svg
+          width="29"
+          height="29"
+          viewBox="0 0 29 29"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9.19995 2.80005L20.4 14L9.19995 25.2"
+            stroke="#2A6CE0"
+            stroke-width="3.2"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="carousel-indicators">
+      {
+        images.map((_, index) => (
+          <button
+            class="indicator"
+            class:list={{ active: index === 0 }}
+            data-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  class Carousel {
+    private track: HTMLElement;
+    private slides: HTMLElement[];
+    private indicators: HTMLElement[];
+    private prevBtn: HTMLElement;
+    private nextBtn: HTMLElement;
+    private currentIndex: number = 0;
+    private autoPlayInterval: number | null = null;
+    private autoPlay: boolean;
+    private interval: number;
+
+    constructor(container: HTMLElement) {
+      this.track = container.querySelector(".carousel-track")!;
+      this.slides = Array.from(container.querySelectorAll(".carousel-slide"));
+      this.indicators = Array.from(container.querySelectorAll(".indicator"));
+      this.prevBtn = container.querySelector(".carousel-btn-prev")!;
+      this.nextBtn = container.querySelector(".carousel-btn-next")!;
+
+      const trackDataAutoPlay = this.track.getAttribute("data-autoplay");
+      const trackDataInterval = this.track.getAttribute("data-interval");
+
+      this.autoPlay = trackDataAutoPlay === "true";
+      this.interval = trackDataInterval ? parseInt(trackDataInterval) : 5000;
+
+      this.init();
+    }
+
+    private init() {
+      this.prevBtn.addEventListener("click", () => this.prev());
+      this.nextBtn.addEventListener("click", () => this.next());
+      this.indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => this.goTo(index));
+      });
+
+      if (this.autoPlay) {
+        this.startAutoPlay();
+      }
+
+      // Pause on hover
+      this.track.addEventListener("mouseenter", () => this.stopAutoPlay());
+      this.track.addEventListener("mouseleave", () => {
+        if (this.autoPlay) this.startAutoPlay();
+      });
+    }
+
+    private updateSlides() {
+      this.slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === this.currentIndex);
+      });
+
+      this.indicators.forEach((indicator, index) => {
+        indicator.classList.toggle("active", index === this.currentIndex);
+      });
+
+      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+    }
+
+    private next() {
+      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+      this.updateSlides();
+      this.resetAutoPlay();
+    }
+
+    private prev() {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+      this.updateSlides();
+      this.resetAutoPlay();
+    }
+
+    private goTo(index: number) {
+      this.currentIndex = index;
+      this.updateSlides();
+      this.resetAutoPlay();
+    }
+
+    private startAutoPlay() {
+      this.autoPlayInterval = window.setInterval(() => {
+        this.next();
+      }, this.interval);
+    }
+
+    private stopAutoPlay() {
+      if (this.autoPlayInterval) {
+        clearInterval(this.autoPlayInterval);
+        this.autoPlayInterval = null;
+      }
+    }
+
+    private resetAutoPlay() {
+      this.stopAutoPlay();
+      if (this.autoPlay) {
+        this.startAutoPlay();
+      }
+    }
+  }
+
+  document.querySelectorAll(".carousel-container").forEach((container) => {
+    new Carousel(container as HTMLElement);
+  });
+</script>

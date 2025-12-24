@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import LifeAtEco from "../components/LifeAtEco.astro";
+import Carousel from "../components/Carousel.astro";
+import Benefits from "../components/Benefits.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -13,5 +15,18 @@ import LifeAtEco from "../components/LifeAtEco.astro";
   <main>
     <Hero />
     <LifeAtEco />
+    <Carousel
+      images={[
+        { src: "/images/carousel/photo_1.png", alt: "Team photo 1" },
+        { src: "/images/carousel/photo_2.png", alt: "Team photo 2" },
+        { src: "/images/carousel/photo_3.png", alt: "Team photo 3" },
+        { src: "/images/carousel/photo_4.png", alt: "Team photo 4" },
+        { src: "/images/carousel/photo_5.png", alt: "Team photo 5" },
+        { src: "/images/carousel/photo_6.png", alt: "Team photo 6" },
+      ]}
+      autoPlay={true}
+      autoPlayInterval={5000}
+    />
+    <Benefits />
   </main>
 </Layout>
