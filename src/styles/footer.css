@@ -1,0 +1,176 @@
+.footer {
+  background: #2A6CE0;
+  opacity: 0.9;
+  padding: 60px;
+  color: #ffffff;
+}
+
+.footer-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.footer-left {
+  flex: 0.6;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.footer-logo-icon {
+  flex-shrink: 0;
+}
+
+.footer-info {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.8;
+  opacity: 0.95;
+}
+
+.footer-info p {
+  margin: 0;
+}
+
+.footer-info p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-info strong {
+  font-weight: 600;
+}
+
+.footer-right {
+  flex-shrink: 0;
+  text-align: right;
+  align-self: flex-end;
+}
+
+.footer-section-title {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 24px;
+  margin: 0 0 24px 0;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-social-link svg {
+  width: 56px;
+  height: 56px;
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    gap: 40px;
+  }
+
+  .footer-info {
+    font-size: 13px;
+  }
+
+  .footer-section-title {
+    font-size: 15px;
+  }
+
+  .footer-social-link {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer-social-link svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-right {
+    text-align: left;
+  }
+
+  .footer-socials {
+    justify-content: flex-start;
+  }
+
+  .footer-logo {
+    margin-bottom: 24px;
+  }
+
+  .footer-info {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 32px 16px;
+  }
+
+  .footer-content {
+    gap: 24px;
+  }
+
+  .footer-logo {
+    margin-bottom: 16px;
+  }
+
+  .footer-info {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .footer-section-title {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .footer-socials {
+    gap: 12px;
+  }
+
+  .footer-social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer-social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+}
