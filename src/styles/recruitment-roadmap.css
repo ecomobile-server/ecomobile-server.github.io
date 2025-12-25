@@ -1,0 +1,195 @@
+/* src/styles/recruitment-roadmap.css */
+
+.recruitment-roadmap {
+  padding: 6rem 1rem;
+  background-color: #f8fafc;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.roadmap-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.roadmap-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Desktop Layout (SVG Road) --- */
+.desktop-roadmap {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 983; /* Updated to match new viewBox */
+  margin: 0 auto;
+}
+
+.road-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* STEPS */
+.roadmap-step {
+  position: absolute;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+}
+
+.roadmap-step.above {
+  transform: translate(-50%, -100%);
+  animation: fadeInStepAbove 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.roadmap-step.below {
+  transform: translate(-50%, 0);
+  animation: fadeInStepBelow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInStepAbove {
+  0% { opacity: 0; transform: translate(-50%, -80%); }
+  100% { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+@keyframes fadeInStepBelow {
+  0% { opacity: 0; transform: translate(-50%, 20%); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.step-icon {
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #2563eb;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.roadmap-step:hover .step-icon {
+  transform: scale(1.1);
+}
+
+.step-content {
+  margin: 12px 0;
+}
+
+.step-content h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 4px;
+}
+
+.step-content p {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.step-line {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, #93c5fd, transparent);
+}
+
+.roadmap-step.below .step-line {
+  background: linear-gradient(to top, #93c5fd, transparent);
+}
+
+/* POSITIONS (Based on SVG 1920x983) */
+/* (x/1920)*100, (y/983)*100 */
+
+.s1 { left: 23.6%; top: 79.1%; animation-delay: 0.8s; }
+.s2 { left: 41.3%; top: 57.5%; animation-delay: 1.2s; }
+.s3 { left: 61.9%; top: 46.8%; animation-delay: 1.6s; }
+.s4 { left: 74.0%; top: 37.9%; animation-delay: 2.0s; }
+.s5 { left: 90.5%; top: 35.4%; animation-delay: 2.4s; }
+
+/* --- Mobile Layout (Vertical Timeline) --- */
+.mobile-roadmap {
+  display: none;
+  position: relative;
+  padding: 2rem 1rem 2rem 3rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobile-roadmap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2rem;
+  width: 4px;
+  background: linear-gradient(to bottom, #2563eb, #93c5fd);
+  border-radius: 2px;
+}
+
+.mobile-step {
+  position: relative;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.mobile-icon-wrapper {
+  position: absolute;
+  left: -2.5rem;
+  width: 48px;
+  height: 48px;
+  background-color: white;
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 2;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.mobile-content {
+  padding-left: 1.5rem;
+}
+
+.mobile-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-content p {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* --- Responsive Breakpoint --- */
+@media (max-width: 1024px) {
+  .desktop-roadmap {
+    display: none;
+  }
+  .mobile-roadmap {
+    display: block;
+  }
+}

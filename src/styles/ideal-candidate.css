@@ -1,0 +1,318 @@
+/* Ideal Candidate Section */
+.ideal-candidate-section {
+  padding: 2rem 3rem 3rem 3rem; /* Reduced top padding for mobile */
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .ideal-candidate-section {
+    padding: 5rem 5rem 0;
+  }
+}
+
+.candidate-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Title */
+.candidate-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Allow wrapping */
+}
+
+.candidate-title {
+  font-size: 1.5rem; /* Mobile font size */
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .candidate-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .candidate-title {
+    font-size: 3.75rem;
+  }
+}
+
+.title-arrow {
+  background-color: #E0F2FE;
+  color: var(--color-primary);
+  border-radius: 99px;
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.title-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+/* Grid Layout */
+.candidate-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem; /* Spacing between cards when stacked */
+}
+
+@media (min-width: 1024px) {
+  .candidate-grid {
+    grid-template-columns: 0.8fr 1.8fr 0.8fr; /* Desktop Ratio */
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+}
+
+/* Columns */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.column.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* On mobile, image stays where it is in DOM, usually 2nd or handle order */
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .column.center {
+    height: 100%;
+  }
+
+  .column {
+     justify-content: center;
+     gap: 8rem;
+  }
+}
+
+.candidate-image {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 20px 20px;
+  object-fit: cover;
+  display: none; /* Hidden on mobile */
+}
+
+@media (min-width: 1024px) {
+  .candidate-image {
+    display: block; /* Show on desktop */
+  }
+}
+
+/* Cards */
+.candidate-card {
+  background-color: #f3f4f6;
+  margin-top: 1.5rem; /* Top margin for floating icon on mobile */
+  border-radius: 2rem;
+  padding: 2rem; /* Clean padding for mobile */
+  position: relative;
+  z-index: 1;
+}
+
+.candidate-card h3 {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.candidate-card p {
+  color: #212121;
+  opacity: 0.5;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Icon Positioning logic */
+.card-icon-box {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 6px rgba(42, 108, 224, 0.25);
+
+  /* Mobile Default: Top Left floating */
+  top: -20px;
+  left: 20px;
+}
+
+.card-icon-box svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* Desktop Styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .candidate-card {
+    margin-top: 0;
+    padding: 0.5rem 3rem 2rem; /* Restore user preference */
+     max-width: 320px;
+  }
+
+  .candidate-card h3 {
+     font-size: 1.5rem;
+  }
+
+  .candidate-card p {
+     font-size: 1.125rem;
+  }
+
+  .card-icon-box {
+     width: 72px;
+     height: 72px;
+     border-radius: 16px;
+  }
+  .card-icon-box svg {
+     width: 36px;
+     height: 36px;
+  }
+
+  /* Left Column alignment */
+  .column.left {
+    align-items: flex-end;
+    justify-content: center;
+    gap: 12rem;
+    padding-bottom: 4rem;
+  }
+  .column.left .candidate-card {
+    margin-right: -40px;
+    text-align: left;
+  }
+
+  /* Right Column alignment */
+  .column.right {
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12rem;
+    padding-bottom: 4rem;
+  }
+  .column.right .candidate-card {
+    margin-left: -40px;
+    text-align: left;
+  }
+
+  /* Card 1: Top Left */
+  .card-1 {
+    border-radius: 3.75rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: translate(35%, -7rem);
+  }
+  .card-1 .card-icon-box {
+    top: -20px;
+    right: -20px;
+    left: auto; /* Reset mobile left */
+  }
+
+  /* Card 2: Bottom Left */
+  .card-2 {
+    border-radius: 3.75rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: translate(20%, -4rem);
+  }
+  .card-2 .card-icon-box {
+    bottom: -20px;
+    right: -20px;
+    top: auto; /* Reset top */
+    left: auto;
+  }
+
+  /* Card 3: Top Right */
+  .card-3 {
+    border-radius: 3.75rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transform: translate(-5%, -2rem);
+  }
+  .card-3 .card-icon-box {
+    top: -20px;
+    right: -20px; /* User wanted right */
+    left: auto;
+  }
+
+  /* Card 4: Bottom Right */
+  .card-4 {
+    border-radius: 3.75rem;
+    border-top-left-radius: 0;
+    /* User removed bottom-left radius reset */
+    transform: translate(15%, 2rem);
+  }
+  .card-4 .card-icon-box {
+    top: -20px;
+    right: -20px; /* User wanted right */
+    left: auto;
+  }
+
+  /* Image Layering */
+  .column.center {
+    z-index: 5;
+    position: relative;
+    pointer-events: none;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1440px) {
+  .candidate-container {
+    max-width: 1600px;
+  }
+  .candidate-grid {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+  .candidate-card {
+    max-width: 100%;
+  }
+}
+
+/* Background Decorations */
+.bg-decoration {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-left {
+  top: 20%;
+  left: -5%;
+  width: 15rem;
+  opacity: 0.5;
+}
+
+.bg-right {
+  bottom: 20%;
+  right: -5%;
+  width: 15rem;
+  opacity: 0.5;
+}
