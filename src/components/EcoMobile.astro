@@ -1,0 +1,108 @@
+---
+import "../styles/ecomobile.css";
+---
+
+<section class="eco-mobile-section" id="eco-mobile">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="images-grid">
+        <div class="image-card">
+          <img src="/images/ecomobile/photo_1.png" alt="Team photo 1" />
+        </div>
+        <div class="image-card">
+          <img src="/images/ecomobile/photo_2.png" alt="Office space" />
+        </div>
+        <div class="image-card">
+          <img src="/images/ecomobile/photo_3.png" alt="Team meeting" />
+        </div>
+        <div class="image-card">
+          <img src="/images/ecomobile/photo_4.png" alt="Conference room" />
+        </div>
+      </div>
+
+      <div class="text-content">
+        <h2 class="title">ECO MOBILE</h2>
+        <p class="description">
+          Hơn 8 năm qua, Eco Mobile phát triển dựa trên một niềm tin giản dị: "<strong
+            >Làm đúng để xây dựng một doanh nghiệp bền vững</strong
+          >". <br />
+          Với người Eco, đạo đức nghiệp là một lời cam kết với người dùng, với sản
+          phẩm, với đối tác và với chính con đường sự nghiệp của mỗi thành viên. Eco
+          tin rằng một sự nghiệp đúng nghĩa không chỉ nằm ở đích đến, mà là hành trình
+          kiến định lựa chọn làm đúng, để mỗi nhân sự luôn hạnh phúc vì tự hào về
+          giá trị mình tạo ra.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="270" data-suffix="M+">0</div>
+        <div class="stat-label">Tổng lượt tải</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="35" data-suffix="+">0</div>
+        <div class="stat-label">Tổng sản phẩm</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="180" data-suffix="+">0</div>
+        <div class="stat-label">Quốc gia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="60" data-suffix="+">0</div>
+        <div class="stat-label">Quy mô nhân sự</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="25" data-suffix="">25</div>
+        <div class="stat-label">Độ tuổi trung bình</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const animateCounters = () => {
+    const counters = document.querySelectorAll(".stat-number");
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const counter = entry.target as HTMLElement;
+          const target = parseInt(counter.dataset.target || "0");
+          const suffix = counter.dataset.suffix || "";
+          const duration = 1000; // 2 seconds
+          const startTime = Date.now();
+
+          const updateCounter = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(target * progress);
+
+            counter.textContent = current + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            }
+          };
+
+          updateCounter();
+          observer.unobserve(counter);
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach((counter) => observer.observe(counter));
+  };
+
+  // Run when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", animateCounters);
+  } else {
+    animateCounters();
+  }
+</script>

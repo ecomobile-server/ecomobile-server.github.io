@@ -1,0 +1,94 @@
+---
+import "../styles/call-to-action.css";
+
+interface Props {
+  title?: string;
+  highlightText?: string;
+  subtitle?: string;
+  deadline?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  notes?: string[];
+}
+
+const {
+  title = "Bạn có muốn trở thành thế hệ PM mới của ngành Mobile App cùng với",
+  highlightText = "EPM Gen 2.0?",
+  subtitle = "Hãy dành ít phút ngắn lại để điền form ứng tuyển cho EPM Gen 2.0 dưới đây, giúp chúng tôi có thể hiểu rõ hơn về bạn.",
+  deadline = "31/12/2025",
+  buttonText = "Nộp đơn ứng tuyển",
+  buttonLink = "#",
+  notes = [
+    "Eco Mobile cam kết tôn trọng và bảo mật mọi thông tin ứng viên cung cấp.",
+    "Dữ liệu ứng tuyển chỉ được sử dụng cho mục đích đánh giá hồ sơ trong khuôn khổ chương trình EPM Gen 2.0 và không chia sẻ với bất kỳ bên thứ ba nào khi chưa có sự đồng ý của ứng viên.",
+    "Mọi thông tin và phản hồi từ ứng viên sẽ được đáp ngữ tuyển dụng xử lý nhanh chóng và chuyên nghiệp.",
+  ],
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="cta-container">
+    <div class="cta-card">
+      <h2 class="cta-title">
+        {title}
+        <span class="cta-highlight">{highlightText}</span>
+      </h2>
+
+      <p class="cta-subtitle">{subtitle}</p>
+
+      <div class="cta-actions">
+        <div class="cta-deadline">
+          <svg
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_266_4093)">
+              <path
+                d="M24.4137 21.1788L19.3943 17.4143V9.74586C19.3943 8.97481 18.7711 8.35156 18 8.35156C17.229 8.35156 16.6057 8.97481 16.6057 9.74586V18.1115C16.6057 18.5507 16.8121 18.9648 17.1634 19.2269L22.7405 23.4098C22.9914 23.598 23.2843 23.6886 23.5756 23.6886C24.0009 23.6886 24.4192 23.4976 24.6925 23.1295C25.1555 22.5145 25.03 21.6403 24.4137 21.1788Z"
+                fill="white"></path>
+              <path
+                d="M18 0C8.07419 0 0 8.07419 0 18C0 27.9258 8.07419 36 18 36C27.9258 36 36 27.9258 36 18C36 8.07419 27.9258 0 18 0ZM18 33.2115C9.61348 33.2115 2.78852 26.3865 2.78852 18C2.78852 9.61348 9.61348 2.78852 18 2.78852C26.3879 2.78852 33.2115 9.61348 33.2115 18C33.2115 26.3865 26.3865 33.2115 18 33.2115Z"
+                fill="white"></path>
+            </g>
+            <defs>
+              <clipPath id="clip0_266_4093">
+                <rect width="36" height="36" fill="white"></rect>
+              </clipPath>
+            </defs>
+          </svg>
+          <span>Hạn chót ứng tuyển: {deadline}</span>
+        </div>
+
+        <a href={buttonLink} class="cta-button">
+          {buttonText}
+          <svg
+            width="52"
+            height="36"
+            viewBox="0 0 52 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M47 15.75V20.25L5 21V15L47 15.75Z" fill="#2A6CE0"></path>
+            <path
+              d="M51.7685 17.9997L34.8215 34.9466L29.9795 30.1046L46.5488 17.9997L29.9795 5.89472L34.8215 1.05273L51.7685 17.9997Z"
+              fill="#2A6CE0"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    {
+      notes && notes.length > 0 && (
+        <div class="cta-notes">
+          <p class="cta-notes-title">* Chính sách dữ liệu tuyển dụng:</p>
+          <ul class="cta-notes-list">
+            {notes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</section>

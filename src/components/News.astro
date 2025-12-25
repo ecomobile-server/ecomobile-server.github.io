@@ -1,0 +1,139 @@
+---
+import "../styles/news.css";
+
+interface NewsCard {
+  video: string;
+  title: string;
+  poster?: string;
+}
+
+interface Props {
+  cards?: NewsCard[];
+}
+
+const defaultCards: NewsCard[] = [
+  {
+    video: "/videos/news/hackathon.mp4",
+    title: "Cuộc thi Hackathon",
+  },
+  {
+    video: "/videos/news/ngay-2-9.mp4",
+    title: "Ngày 2-9 tại Eco",
+  },
+  {
+    video: "/videos/news/quang-binh.mp4",
+    title: "Du lịch Quảng Bình",
+  },
+  {
+    video: "/videos/news/mens-day.mp4",
+    title: "Ngày Men's Day",
+  },
+  {
+    video: "/videos/news/ngay-20.mp4",
+    title: "Ngày 20/10 ở Eco",
+  },
+  {
+    video: "/videos/news/trung_thu.mp4",
+    title: "Sự kiện Trung Thu",
+  },
+  {
+    video: "/videos/news/sinh_ton.mp4",
+    title: "Lớp học kỹ năng sinh tồn",
+  },
+];
+
+const { cards = defaultCards } = Astro.props;
+---
+
+<section class="news-section">
+  <div class="news-container">
+    <h2 class="news-title">BẢN TIN ECO</h2>
+    <div class="news-scroll-wrapper">
+      <div class="news-cards">
+        {
+          cards.map((card) => (
+            <div class="news-card">
+              <div class="news-card-media">
+                <video
+                  src={card.video}
+                  poster={card.poster}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                />
+                <div class="news-card-overlay">
+                  <p class="news-card-title">{card.title}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const newsCards = document.querySelectorAll(".news-card");
+    const scrollWrapper = document.querySelector(
+      ".news-scroll-wrapper"
+    ) as HTMLElement;
+
+    // Video play/pause on hover
+    newsCards.forEach((card) => {
+      const video = card.querySelector("video");
+
+      if (video) {
+        card.addEventListener("mouseenter", () => {
+          video.play();
+        });
+
+        card.addEventListener("mouseleave", () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
+    });
+
+    // Drag to scroll functionality
+    if (scrollWrapper) {
+      let isDown = false;
+      let startX: number;
+      let scrollLeft: number;
+
+      scrollWrapper.addEventListener("mousedown", (e: MouseEvent) => {
+        isDown = true;
+        scrollWrapper.classList.add("active");
+        startX = e.pageX - scrollWrapper.offsetLeft;
+        scrollLeft = scrollWrapper.scrollLeft;
+      });
+
+      scrollWrapper.addEventListener("mouseleave", () => {
+        isDown = false;
+        scrollWrapper.classList.remove("active");
+      });
+
+      scrollWrapper.addEventListener("mouseup", () => {
+        isDown = false;
+        scrollWrapper.classList.remove("active");
+      });
+
+      scrollWrapper.addEventListener("mousemove", (e: MouseEvent) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollWrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        scrollWrapper.scrollLeft = scrollLeft - walk;
+      });
+
+      // Mouse wheel horizontal scroll
+      scrollWrapper.addEventListener("wheel", (e: WheelEvent) => {
+        e.preventDefault();
+        scrollWrapper.scrollLeft += e.deltaY;
+      });
+    }
+  });
+</script>
