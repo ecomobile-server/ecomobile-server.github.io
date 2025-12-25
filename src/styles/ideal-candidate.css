@@ -1,6 +1,6 @@
 /* Ideal Candidate Section */
 .ideal-candidate-section {
-  padding: 3rem 1.5rem 0; /* Reduced top padding for mobile */
+  padding: 2rem 3rem 3rem 3rem; /* Reduced top padding for mobile */
   background-color: #ffffff;
   position: relative;
   overflow: hidden;

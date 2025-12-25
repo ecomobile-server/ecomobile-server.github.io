@@ -2,191 +2,26 @@
 import "../styles/recruitment-roadmap.css";
 ---
 
-<section class="recruitment-roadmap-section">
+<section class="recruitment-roadmap">
   <div class="roadmap-container">
     <h2 class="roadmap-title">LỘ TRÌNH TUYỂN DỤNG</h2>
 
-    <!-- Desktop Wave SVG Background -->
-    <div class="desktop-wave">
+    <!-- Desktop: SVG Road Animation -->
+    <div class="desktop-roadmap">
       <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 1440 600"
+        width="1920"
+        height="983"
+        viewBox="0 0 1920 983"
         fill="none"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <!-- The Wave Path -->
-        <!--
-           Start bottom left approx 100, 500
-           Curve up to 400, 300
-           Curve down to 800, 500
-           Curve up to 1100, 200
-           Curve up to 1440, 100
-        -->
+        xmlns="http://www.w3.org/2000/svg"
+        class="road-svg">
         <path
-          d="M0,500 C200,480 300,400 350,300 C400,200 500,150 600,250 C700,350 750,550 950,450 C1150,350 1200,100 1440,50"
-          stroke="#2563EB"
-          stroke-width="40"
-          stroke-linecap="round"
-          class="wave-path-bg"></path>
-        <!-- Dashed center line -->
-        <path
-          d="M0,500 C200,480 300,400 350,300 C400,200 500,150 600,250 C700,350 750,550 950,450 C1150,350 1200,100 1440,50"
-          stroke="#60A5FA"
-          stroke-width="2"
-          stroke-dasharray="10 10"
-          fill="none"
-          class="wave-path-dash"></path>
-
-        <!-- Points on curve -->
-        <!-- We can position circles on the SVG or rely on CSS absolute positioning for the cards.
-             The design has small white dots on the line. -->
-        <circle cx="350" cy="300" r="6" fill="white"></circle>
-        <circle cx="600" cy="250" r="6" fill="white"></circle>
-        <circle cx="950" cy="450" r="6" fill="white"></circle>
-        <circle cx="1250" cy="150" r="6" fill="white"></circle>
-
-        <!-- Vertical lines dropping from the points/line -->
-        <!-- Just visual decorations -->
+          d="M1990.42 51.959L1737.9 347.582C1657.53 441.669 1516.2 453.03 1421.83 372.99L1419.21 370.768C1371.44 330.251 1301.96 326.589 1249.8 361.789C1216.42 384.318 1194.34 420.409 1189.62 460.247C1179 549.846 1114.32 623.666 1026.9 645.979L1020.25 647.678C935.635 669.274 846.399 637.159 794.951 566.598C760.691 519.609 699.953 500.207 644.797 518.633L639.292 520.472C590.426 536.796 554.304 578.404 545.005 629.078L542.854 640.799C532.604 696.656 500.503 746.12 453.665 778.232C397.546 816.708 326.437 826.103 262.251 803.522L260.007 802.732C214.191 786.615 163.276 795.767 125.941 826.831L-186.416 1086.73L-237.584 1025.23L74.7725 765.334C133.75 716.262 214.181 701.805 286.556 727.267L288.8 728.056C328.914 742.168 373.355 736.296 408.428 712.25C437.7 692.181 457.762 661.267 464.168 626.358L466.319 614.638C480.879 535.297 537.435 470.153 613.943 444.594L619.448 442.755C707.66 413.286 804.801 444.316 859.594 519.466C891.762 563.586 947.558 583.665 1000.46 570.162L1007.12 568.465C1062.49 554.333 1103.45 507.579 1110.17 450.832C1117.65 387.733 1152.51 330.939 1205.05 295.479C1286.69 240.379 1395.63 245.865 1470.96 309.758L1473.58 311.98C1534.33 363.511 1625.32 356.197 1677.07 295.622L1929.58 0L1990.42 51.959Z"
+          fill="#2A6CE0"></path>
       </svg>
     </div>
 
-    <div class="roadmap-steps">
-      <!-- Step 1: Vòng hồ sơ -->
-      <div class="roadmap-step step-1">
-        <div class="step-icon-box" style="background: #E0F2FE;">
-          <!-- Document Icon -->
-          <svg
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#2563EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-            ></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">Vòng hồ sơ</h3>
-        </div>
-      </div>
-
-      <!-- Step 2: Phỏng vấn -->
-      <div class="roadmap-step step-2">
-        <div class="step-content mobile-only">
-          <!-- On mobile title is right, on desktop title is below -->
-          <!-- Actually content structure is flex row on mobile.
-                 On desktop flex col.
-                 Keep structure simple.
-             -->
-        </div>
-        <!-- Chat Icon -->
-        <!-- Need a specific look: User icon with ? chat bubble -->
-        <div class="step-icon-box" style="background: #2563EB;">
-          <svg
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <path
-              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-            ></path>
-            <text
-              x="8"
-              y="14"
-              font-family="Arial"
-              font-size="8"
-              fill="white"
-              font-weight="bold">?</text
-            >
-          </svg>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">Phỏng vấn</h3>
-        </div>
-      </div>
-
-      <!-- Step 3: Một ngày trải nghiệm -->
-      <div class="roadmap-step step-3">
-        <div
-          class="step-icon-box"
-          style="background: linear-gradient(135deg, #60A5FA 0%, #93C5FD 100%);">
-          <!-- Briefcase Icon -->
-          <svg
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">Một ngày trải nghiệm<br />tại Eco Mobile</h3>
-        </div>
-      </div>
-
-      <!-- Step 4: Thông báo kết quả -->
-      <div class="roadmap-step step-4">
-        <div class="step-icon-box" style="background: white;">
-          <!-- Megaphone Icon -->
-          <svg
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#2563EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M22 8.35L15 2.15v20.7l7-6.2z"></path>
-            <rect x="2" y="8" width="8" height="8"></rect>
-            <path d="M6 16v5"></path>
-            <path d="M22 12h-1"></path>
-          </svg>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">Thông báo kết quả<br />chính thức</h3>
-        </div>
-      </div>
-
-      <!-- Step 5: Tham gia -->
-      <div class="roadmap-step step-5">
-        <div class="step-icon-box star">
-          <!-- Star Icon -->
-          <svg
-            width="100"
-            height="100"
-            viewBox="0 0 24 24"
-            fill="#2563EB"
-            stroke="#2563EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-            ></polygon>
-          </svg>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">Tham gia<br />EPM Gen 2.0</h3>
-        </div>
-      </div>
-    </div>
+    <!-- Mobile Vertical Timeline -->
+    <div class="mobile-roadmap"></div>
   </div>
 </section>
