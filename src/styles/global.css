@@ -50,3 +50,17 @@ body {
 .btn-primary:hover {
   background-color: var(--color-primary-hover);
 }
+
+@media (max-width: 1024px) {
+  .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-primary {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+}

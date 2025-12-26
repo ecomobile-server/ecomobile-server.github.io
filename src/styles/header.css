@@ -9,7 +9,7 @@
 /* The header uses the global `.container` element.
    We override its horizontal padding here to avoid hard-coding padding on `.header`
    (which would stack with `.container` and break smaller screens). */
-.header .container {
+.header-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -19,6 +19,8 @@
    Ideally, we should rely on the global container for width/margin/padding,
    and use a nested element or a specific class for the flex properties of the header layout. */
 .header-container {
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -187,7 +189,7 @@
 }
 /* Breakpoints (grouped) */
 @media (min-width: 1190px) {
-  .header .container {
+  .header-container {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -215,7 +217,7 @@
 }
 
 @media (min-width: 1400px) {
-  .header .container {
+  .header-container {
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -248,7 +250,7 @@
 }
 
 @media (min-width: 1560px) {
-  .header .container {
+  .header-container {
     padding-left: 6rem;
     padding-right: 6rem;
   }
@@ -260,7 +262,7 @@
 }
 
 @media (min-width: 1800px) {
-  .header .container {
+  .header-container {
     padding-left: 10rem;
     padding-right: 10rem;
   }

@@ -18,6 +18,11 @@
   }
 }
 
+.benefits-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
 .benefits-layout {
   display: flex;
   flex-direction: column;

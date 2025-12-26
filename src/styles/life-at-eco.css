@@ -3,6 +3,11 @@
   background: #fff;
 }
 
+.life-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .life-header {
   text-align: center;
   max-width: 1000px;
