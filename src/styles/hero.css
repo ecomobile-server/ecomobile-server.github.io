@@ -1,0 +1,282 @@
+.hero-section {
+  padding: 0;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  position: relative;
+  height: 40vw;
+  display: flex;
+  align-items: stretch;
+}
+
+.hero-container {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  position: relative;
+  margin: 0 8rem;
+}
+
+/* Content Side */
+.hero-content {
+  flex: 1;
+  z-index: 2;
+  align-self: center;
+}
+
+.hero-title {
+  font-size: 74px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #212121;
+  margin-bottom: 32px;
+  white-space: nowrap;
+}
+
+.hero-title .highlight {
+  font-size: 54px;
+  font-weight: 500;
+  color: #212121;
+}
+
+.hero-description {
+  font-size: 24px;
+  line-height: 1.8;
+  color: #212121;
+  opacity: 0.5;
+  margin-bottom: 38px;
+  max-width: 90%;
+}
+
+.hero-timeline {
+  font-size: 24px;
+  color: #212121;
+  margin-bottom: 80px;
+  font-weight: 400;
+}
+
+/* Image Side */
+.hero-image-container {
+  flex: 1.2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* padding: 0 2rem; */
+}
+
+.hero-bg-graphic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  max-width: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-team-img {
+  position: relative;
+  z-index: 2;
+  height: 90%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Decorative Stars (SVG placeholders) */
+.star {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.star::before {
+  content: '✦'; /* Simple star char if no SVG */
+  font-size: 24px;
+  color: #93c5fd;
+}
+
+.star-1 {
+  top: 10%;
+  left: 0;
+  font-size: 48px;
+  color: #bfdbfe;
+}
+
+.star-2 {
+  bottom: 20%;
+  right: 10%;
+  font-size: 32px;
+  color: #60a5fa;
+}
+
+@media (max-width: 1920px) {
+  .hero-section {
+    height: 35vw;
+  }
+
+  .hero-title {
+    font-size: 54px;
+  }
+
+  .hero-title .highlight {
+    font-size: 44px;
+  }
+
+  .hero-description {
+    font-size: 20px;
+  }
+
+  .hero-timeline {
+    font-size: 20px;
+    margin-bottom: 46px;
+  }
+
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+
+  .hero-section {
+    height: 35vw;
+  }
+
+  .hero-container {
+    margin: 0 4rem;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-title .highlight {
+    font-size: 32px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .hero-timeline {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 45vw;
+  }
+
+  .hero-container {
+    margin: 0 2rem;
+    padding: 0;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+  }
+
+  .hero-title .highlight {
+    font-size: 28px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .hero-timeline {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hero-team-img {
+    height: 80%;
+    max-width: 120%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 0 0 0;
+    height: auto;
+    display: block;
+  }
+
+  .hero-container {
+    margin: 0 auto;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+    order: 1; /* Content first */
+    flex: 0.5;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+  }
+
+  .hero-timeline {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-title .highlight {
+    font-size: 28px;
+  }
+
+  .hero-image-container {
+    width: 100%;
+    min-height: auto;
+    order: 2; /* Image second */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-team-img {
+    width: 100%;
+    height: auto;
+    max-width: 500px; /* Limit size on mobile */
+  }
+
+  .hero-bg-graphic {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-title .highlight {
+    font-size: 24px;
+    display: block; /* Stack highlight if needed or keep inline */
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}

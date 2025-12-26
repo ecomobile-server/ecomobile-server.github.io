@@ -227,8 +227,9 @@
     border-radius: 3.75rem;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    transform: translate(35%, -7rem);
+    transform: translate(35%, -4.5rem);
   }
+
   .card-1 .card-icon-box {
     top: -20px;
     right: -20px;
