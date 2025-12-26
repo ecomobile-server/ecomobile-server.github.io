@@ -1,0 +1,392 @@
+
+.inspiration-section {
+  padding: 0;
+  background-color: #F4F4F4;
+  overflow: hidden;
+  position: relative;
+}
+
+.inspiration-container {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.section-title {
+  color: #2A6CE0;
+  font-size: 3.75rem;
+  line-height: 1.4;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  font-family: var(--font-family);
+  position: relative;
+  z-index: 10;
+  padding-top: 2rem; /* Give it some breathing room since section padding is 0 */
+}
+
+.inspiration-wrapper {
+  position: relative;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+
+
+/* Avatars Area */
+.inspiration-track {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  z-index: 10;
+  margin-bottom: 48px; /* Space between avatars and card */
+}
+
+/* The curved dashed line */
+.inspiration-curve {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  min-width: 1200px; /* Ensure curve doesn't shrink on small screens if we want to keep the shape */
+}
+
+.inspiration-avatars {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.avatar-item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.avatar-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+   POSITIONING: Symmetrical Arc (Smile)
+   Center (active): Lowest, Largest
+   Next/Prev (1): Higher, Smaller
+   Next-2: Even Higher, Smaller
+*/
+
+/* Active */
+.avatar-item.active {
+  opacity: 1;
+  z-index: 20;
+  border-color: #2A6CE0;
+  /* Center, pushed down */
+  transform: translateX(-50%) translateY(100px) scale(1.6); /* 120 * 1.6 = ~192px */
+  box-shadow: 0 12px 30px rgba(42, 108, 224, 0.3);
+}
+
+/* Immediate Neighbors */
+.avatar-item.next {
+  opacity: 0.9;
+  z-index: 10;
+  border-color: white;
+  /* Move Right 1 */
+  transform: translateX(180%) translateY(60px) scale(1.2);
+  filter: grayscale(0%);
+}
+
+.avatar-item.prev {
+  opacity: 0.9;
+  z-index: 10;
+  border-color: white;
+  /* Move Left 1 */
+  transform: translateX(-280%) translateY(60px) scale(1.2);
+  pointer-events: auto;
+}
+
+/* Second Neighbors */
+.avatar-item.next-2 {
+  opacity: 0.8;
+  z-index: 5;
+  border-color: white;
+  /* Move Right 2 */
+  transform: translateX(370%) translateY(30px) scale(1);
+}
+
+.avatar-item.prev-2 {
+  opacity: 0.8;
+  z-index: 5;
+  border-color: white;
+  /* Move Left 2 */
+  transform: translateX(-470%) translateY(30px) scale(1);
+}
+
+/* Hidden States */
+.avatar-item.hidden-left {
+  opacity: 0;
+  transform: translateX(-600%) translateY(-20px) scale(0.5);
+}
+.avatar-item.hidden-right {
+  opacity: 0;
+  transform: translateX(600%) translateY(-20px) scale(0.5);
+}
+
+
+/* Content Card Area */
+.inspiration-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  z-index: 30;
+  padding: 40px 20px;
+}
+
+.inspiration-card {
+  background: white;
+  padding: 2rem 5rem 3.5rem;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.content-item {
+  display: none;
+  animation: fadeIn 0.4s ease-out;
+}
+.content-item.active {
+  display: block;
+}
+
+.person-name {
+  color: #2A6CE0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+.person-role {
+  color: #212121;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #BAE9F2;
+}
+
+.person-quote {
+  color: #212121;
+  opacity: 0.5;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: justify;
+  text-align-last: center;
+}
+
+/* Default state for mobile avatar (hidden on desktop) */
+.mobile-avatar {
+  display: none;
+}
+
+/* Floating Buttons */
+.nav-btn {
+  background-color: #2A6CE0;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(42, 108, 224, 0.4);
+
+  /* Absolute Positioning relative to CARD */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+.prev-btn {
+  left: -28px;
+  /* display handled by JS */
+}
+
+.next-btn {
+  right: -28px;
+  /* display handled by JS */
+}
+
+.nav-btn.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-50%) scale(1.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .inspiration-card-wrapper {
+    height: 550px;
+  }
+
+  .inspiration-card {
+    padding: 2rem 4rem 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .inspiration-wrapper {
+    min-height: auto;
+  }
+
+  /* Hide the desktop curved track on mobile */
+  .inspiration-track {
+    display: none;
+  }
+
+  /* Mobile Avatar Styles */
+  .mobile-avatar {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .mobile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Card and Content */
+  .inspiration-card-wrapper {
+    height: auto;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .inspiration-card {
+    padding: 3rem 2.5rem 4rem; /* Top padding increased for avatar space inside */
+    border-radius: 24px;
+    margin-bottom: 40px;
+    width: 100%;
+    /* max-width: 400px; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .person-name {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+
+  .person-role {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .person-quote {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Adjust Curve - Hidden if track is hidden, but keep rule just in case */
+  .inspiration-curve {
+    display: none;
+  }
+
+  /* Reposition Navigation Buttons */
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    background-color: #2A6CE0; /* Restore desktop blue */
+    border: none;
+    box-shadow: 0 4px 12px rgba(42, 108, 224, 0.4);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+  }
+
+  .nav-btn svg path {
+    stroke: white; /* Restore white icon */
+  }
+
+  .nav-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .prev-btn {
+    left: -22px;
+    right: auto;
+  }
+
+  .next-btn {
+    right: -22px;
+    left: auto;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  /* No additional overrides for buttons needed if 768px handles it */
+  .inspiration-curve {
+     display: none; /* Hide curve on very small screens if it's messy */
+  }
+}
