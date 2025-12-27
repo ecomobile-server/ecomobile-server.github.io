@@ -1,5 +1,5 @@
 .life-at-eco {
-  padding: 5rem 2rem 3rem 2rem;
+  padding: 3rem 2rem 3rem 2rem;
   background: #fff;
 }
 
@@ -21,6 +21,7 @@
   margin-bottom: 1rem;
   line-height: 1.4;
   text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .subtitle {

@@ -1,10 +1,9 @@
 /* src/styles/recruitment-roadmap.css */
 
 .recruitment-roadmap {
-  padding: 6rem 1rem;
+  padding: 3rem 1.5rem 0rem;
   background-color: #f8fafc;
   overflow: hidden;
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .roadmap-container {
@@ -13,13 +12,14 @@
 }
 
 .roadmap-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1e40af;
-  margin-bottom: 5rem;
-  text-align: center;
+  font-size: 3.25rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 2rem;
+  text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  padding: 0 3rem;
 }
 
 /* --- Desktop Layout (SVG Road) --- */
@@ -27,7 +27,7 @@
   display: block;
   position: relative;
   width: 100%;
-  aspect-ratio: 1920 / 983; /* Updated to match new viewBox */
+  aspect-ratio: 1920 / 983;
   margin: 0 auto;
 }
 
@@ -37,51 +37,52 @@
   display: block;
 }
 
+/* Dashed Line Adjustment */
+.dashed-line-path {
+  /* Use translate(x, y) to nudge the line if it's not perfectly centered */
+  /* Example: translate(0px, 10px) moves it down 10px */
+  transform: translate(0px, 25px);
+  /* If the amplitude/curve is too "tall" or "short", try scaleY */
+  /* transform-origin: center; */
+  /* transform: scaleY(0.95); */
+}
+
 /* STEPS */
 .roadmap-step {
   position: absolute;
-  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   z-index: 20;
-  opacity: 0;
+  max-width: 250px; /* Constrain text width */
+  pointer-events: none; /* Let clicks pass through to potential interactives */
 }
 
-.roadmap-step.above {
-  transform: translate(-50%, -100%);
-  animation: fadeInStepAbove 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.roadmap-step.below {
-  transform: translate(-50%, 0);
-  animation: fadeInStepBelow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInStepAbove {
-  0% { opacity: 0; transform: translate(-50%, -80%); }
-  100% { opacity: 1; transform: translate(-50%, -100%); }
-}
-
-@keyframes fadeInStepBelow {
-  0% { opacity: 0; transform: translate(-50%, 20%); }
-  100% { opacity: 1; transform: translate(-50%, 0); }
-}
-
+/* STEP CONTENT STYLING */
 .step-icon {
-  width: 64px;
-  height: 64px;
-  background: #ffffff;
-  border-radius: 16px;
+  width: 120px;
+  height: 120px;
+  /* Option 1: White Clean Box */
+  /* background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
+  color: #2563eb;
+  /* Option 2: Transparent (uncomment if desired) */
+  background: transparent; box-shadow: none;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  color: #2563eb;
-  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* margin: 10px 0; */
+  font-size: 0; /* Clear text spacing */
   transition: transform 0.3s ease;
-  border: 1px solid #e2e8f0;
+  z-index: 2;
+}
+
+.step-icon svg {
+  width: 140px;
+  height: 140px;
 }
 
 .roadmap-step:hover .step-icon {
@@ -89,42 +90,187 @@
 }
 
 .step-content {
-  margin: 12px 0;
+  padding: 0.5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
 }
 
 .step-content h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 4px;
+  color: #2563eb;
+  line-height: 1.4;
+  margin: 0;
 }
 
-.step-content p {
-  font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
+/* CONNECTING LINE */
 .step-line {
   width: 2px;
-  height: 60px;
-  background: linear-gradient(to bottom, #93c5fd, transparent);
+  height: 160px; /* Increased length as requested */
+  background-color: #BAE9F2;
+  margin: 0 auto;
 }
 
-.roadmap-step.below .step-line {
-  background: linear-gradient(to top, #93c5fd, transparent);
+/* DOT ON ROAD */
+.road-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 2px solid #2563eb;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-/* POSITIONS (Based on SVG 1920x983) */
-/* (x/1920)*100, (y/983)*100 */
+/* --- POSITIONS & LAYOUT VARIANTS --- */
 
-.s1 { left: 23.6%; top: 79.1%; animation-delay: 0.8s; }
-.s2 { left: 41.3%; top: 57.5%; animation-delay: 1.2s; }
-.s3 { left: 61.9%; top: 46.8%; animation-delay: 1.6s; }
-.s4 { left: 74.0%; top: 37.9%; animation-delay: 2.0s; }
-.s5 { left: 90.5%; top: 35.4%; animation-delay: 2.4s; }
+/* ABOVE: Road -> Line -> Text -> Icon (Stack bottom-up visual? No, Flex Col) */
+/* We want: Icon (Top), Text, Line (Bottom connecting to road) */
+.roadmap-step.above {
+  transform: translate(-50%, -100%);
+  /* Ensure correct stacking order for 'Above' */
+}
+.roadmap-step.above .step-icon { order: 1; }
+.roadmap-step.above .step-content { order: 2; }
+.roadmap-step.above .step-line { order: 3; }
+.roadmap-step.above .road-dot {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-/* --- Mobile Layout (Vertical Timeline) --- */
+/* BELOW: Road -> Line -> Icon -> Text */
+.roadmap-step.below {
+  transform: translate(-50%, 0);
+}
+.roadmap-step.below .step-line { order: 1; }
+.roadmap-step.below .step-icon { order: 2; }
+.roadmap-step.below .step-content { order: 3; }
+.roadmap-step.below .road-dot {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ANIMATIONS */
+
+/* Initial States (Hidden) */
+.dashed-line-path {
+  /* Use clip-path Animation like the background road to preserve dashed style */
+  clip-path: inset(0 100% 0 0);
+  /* Keep transform from previous edit */
+  transform: translate(0px, 25px);
+}
+
+.road-bg-path {
+  clip-path: inset(0 100% 0 0);
+}
+
+.roadmap-step .road-dot {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+.roadmap-step .step-line {
+  transform: scaleY(0);
+}
+
+.roadmap-step .step-icon,
+.roadmap-step .step-content {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Trigger Animations when In View */
+.recruitment-roadmap.in-view .dashed-line-path {
+  animation: revealPath 2s linear forwards;
+}
+
+.recruitment-roadmap.in-view .road-bg-path {
+  animation: revealPath 2s linear forwards;
+}
+
+.recruitment-roadmap.in-view .roadmap-step .road-dot {
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.recruitment-roadmap.in-view .roadmap-step .step-line {
+  animation: growLine 0.5s ease-out forwards;
+}
+
+.recruitment-roadmap.in-view .roadmap-step .step-icon,
+.recruitment-roadmap.in-view .roadmap-step .step-content {
+  animation: fadeSlide 0.5s ease-out forwards;
+}
+
+/* Animation Delays based on position on the path (Total 2s) */
+/* s1 (~15%) -> 0.4s */
+.recruitment-roadmap.in-view .s1 .road-dot { animation-delay: 0.4s; }
+.recruitment-roadmap.in-view .s1 .step-line { animation-delay: 0.5s; }
+.recruitment-roadmap.in-view .s1 .step-icon { animation-delay: 0.6s; }
+.recruitment-roadmap.in-view .s1 .step-content { animation-delay: 0.7s; }
+
+/* s2 (~35%) -> 0.8s */
+.recruitment-roadmap.in-view .s2 .road-dot { animation-delay: 0.8s; }
+.recruitment-roadmap.in-view .s2 .step-line { animation-delay: 0.9s; }
+.recruitment-roadmap.in-view .s2 .step-icon { animation-delay: 1.0s; }
+.recruitment-roadmap.in-view .s2 .step-content { animation-delay: 1.1s; }
+
+/* s3 (~55%) -> 1.2s */
+.recruitment-roadmap.in-view .s3 .road-dot { animation-delay: 1.2s; }
+.recruitment-roadmap.in-view .s3 .step-line { animation-delay: 1.3s; }
+.recruitment-roadmap.in-view .s3 .step-icon { animation-delay: 1.4s; }
+.recruitment-roadmap.in-view .s3 .step-content { animation-delay: 1.5s; }
+
+/* s4 (~75%) -> 1.6s */
+.recruitment-roadmap.in-view .s4 .road-dot { animation-delay: 1.6s; }
+.recruitment-roadmap.in-view .s4 .step-line { animation-delay: 1.7s; }
+.recruitment-roadmap.in-view .s4 .step-icon { animation-delay: 1.8s; }
+.recruitment-roadmap.in-view .s4 .step-content { animation-delay: 1.9s; }
+
+/* s5 (~92%) -> 1.9s */
+.recruitment-roadmap.in-view .s5 .road-dot { animation-delay: 1.9s; }
+.recruitment-roadmap.in-view .s5 .step-line { animation-delay: 2.0s; }
+.recruitment-roadmap.in-view .s5 .step-icon { animation-delay: 2.1s; }
+.recruitment-roadmap.in-view .s5 .step-content { animation-delay: 2.2s; }
+
+
+/* KEYFRAMES */
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes revealPath {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes popIn {
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes growLine {
+  to { transform: scaleY(1); }
+}
+
+@keyframes fadeSlide {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Transform Origins for Line Growth */
+.roadmap-step.above .step-line { transform-origin: bottom; }
+.roadmap-step.below .step-line { transform-origin: top; }
+
+
+/* POSITIONS (Keep original positioning) */
+.s1 { left: 14.84%; top: 78.13%; }
+.s2 { left: 34.90%; top: 48.07%; }
+.s3 { left: 50%; top: 62.3%; }
+.s4 { left: 69.00%; top: 30.28%; }
+.s5 { left: 84.93%; top: 37.74%; }
+
+
+/* --- Mobile Layout --- */
 .mobile-roadmap {
   display: none;
   position: relative;
@@ -149,22 +295,42 @@
   margin-bottom: 3rem;
   display: flex;
   align-items: flex-start;
+  /* Simple mobile animation */
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s ease-out;
 }
+
+.recruitment-roadmap.in-view .mobile-step {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.recruitment-roadmap.in-view .mobile-step:nth-child(1) { transition-delay: 0.2s; }
+.recruitment-roadmap.in-view .mobile-step:nth-child(2) { transition-delay: 0.4s; }
+.recruitment-roadmap.in-view .mobile-step:nth-child(3) { transition-delay: 0.6s; }
+.recruitment-roadmap.in-view .mobile-step:nth-child(4) { transition-delay: 0.8s; }
+.recruitment-roadmap.in-view .mobile-step:nth-child(5) { transition-delay: 1.0s; }
 
 .mobile-icon-wrapper {
   position: absolute;
   left: -2.5rem;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background-color: white;
   border: 2px solid #2563eb;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  color: #2563eb;
   z-index: 2;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.mobile-icon-wrapper svg {
+  width: 36px;
+  height: 36px;
 }
 
 .mobile-content {
@@ -174,14 +340,17 @@
 .mobile-content h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 0.5rem;
+  color: #2563eb;
+  margin-bottom: 0.25rem;
+  margin-top: 0;
 }
 
 .mobile-content p {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #475569;
-  line-height: 1.5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* --- Responsive Breakpoint --- */
@@ -192,4 +361,84 @@
   .mobile-roadmap {
     display: block;
   }
+
+  .roadmap-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
 }
+
+@media (max-width: 768px) {
+  .roadmap-title {
+    font-size: 2rem;
+  }
+
+  .recruitment-roadmap {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .mobile-roadmap {
+    padding-left: 3.5rem; /* Give a bit more space for the line/icon */
+  }
+
+  .mobile-roadmap::before {
+    left: 1.5rem; /* Move line slightly left */
+  }
+
+  .mobile-icon-wrapper {
+    left: -3rem; /* Adjust icon position relative to step content */
+    /* Icon center should align with line.
+       Line at 1.5rem.
+       Content starts at 3.5rem (padding-left).
+       Distance from content start to line center = 3.5 - 1.5 = 2rem.
+       Icon width 48px (3rem). Center 1.5rem.
+       We want icon center to be at -2rem relative to content?
+       No.
+       Line is at absolute 1.5rem inside container.
+       Step content starts at 3.5rem.
+       So line is -2.0rem to the left of content.
+       Icon should be centered at -2.0rem.
+       Icon is 48px wide. Left should be -2.0rem - (48px/2) = -2rem - 1.5rem = -3.5rem.
+       Wait 48px is 3rem. Half is 1.5rem.
+       Let's stick to pixels for clarity or rems.
+       Line left: 1.5rem. Width 4px. Center ~ 1.5rem + 2px. Let's call it 1.6rem.
+       Mobile-roadmap padding-left: 3.5rem.
+       Step starts at 3.5rem.
+       Icon needs to be centered at 1.6rem.
+       Offset from step start = 1.6rem - 3.5rem = -1.9rem.
+       Icon width 48px ~ 3rem.
+       Icon left corner should be at Center - Width/2 = 1.6rem - 1.5rem = 0.1rem.
+       Offset from step start = 0.1rem - 3.5rem = -3.4rem.
+    */
+    left: -3.4rem;
+    /* Let's double check standard sizes. 1rem = 16px generally. */
+    width: 48px; height: 48px;
+  }
+
+  /* Let's simplify.
+     Line left: 24px (1.5rem).
+     Icon width: 48px. Center needs to be at 26px (Line center).
+     Icon left: 26 - 24 = 2px.
+     Wrapper padding-left: 64px (4rem).
+     Icon left: -62px (-3.875rem) from content? No.
+     Let's try a cleaner approach.
+  */
+  .mobile-roadmap {
+    padding-left: 4.5rem; /* More space */
+  }
+  .mobile-roadmap::before {
+    left: 2rem; /* Line at 32px */
+  }
+  .mobile-icon-wrapper {
+    /* Line center at 2rem (32px) + 2px = 34px.
+       Icon width 48px.
+       Icon left = 34 - 24 = 10px.
+       Content starts at 4.5rem = 72px.
+       Icon offset from content = 10px - 72px = -62px.
+       -62px / 16 = -3.875rem.
+    */
+    left: -4rem;
+  }
+}
+
