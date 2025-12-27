@@ -82,22 +82,6 @@ const { cards = defaultCards } = Astro.props;
       ".news-scroll-wrapper"
     ) as HTMLElement;
 
-    // Video play/pause on hover
-    newsCards.forEach((card) => {
-      const video = card.querySelector("video");
-
-      if (video) {
-        card.addEventListener("mouseenter", () => {
-          video.play();
-        });
-
-        card.addEventListener("mouseleave", () => {
-          video.pause();
-          video.currentTime = 0;
-        });
-      }
-    });
-
     // Drag to scroll functionality
     if (scrollWrapper) {
       let isDown = false;

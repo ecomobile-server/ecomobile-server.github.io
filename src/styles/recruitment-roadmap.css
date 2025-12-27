@@ -4,7 +4,6 @@
   padding: 3rem 1.5rem 0rem;
   background-color: #f8fafc;
   overflow: hidden;
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .roadmap-container {
@@ -14,9 +13,9 @@
 
 .roadmap-title {
   font-size: 3.25rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #2563eb;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -56,7 +55,7 @@
   align-items: center;
   text-align: center;
   z-index: 20;
-  width: 200px; /* Constrain text width */
+  max-width: 250px; /* Constrain text width */
   pointer-events: none; /* Let clicks pass through to potential interactives */
 }
 
@@ -75,7 +74,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   font-size: 0; /* Clear text spacing */
   transition: transform 0.3s ease;
   z-index: 2;
@@ -316,8 +315,8 @@
 .mobile-icon-wrapper {
   position: absolute;
   left: -2.5rem;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background-color: white;
   border: 2px solid #2563eb;
   border-radius: 12px;
@@ -330,8 +329,8 @@
 }
 
 .mobile-icon-wrapper svg {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 
 .mobile-content {
@@ -341,8 +340,9 @@
 .mobile-content h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e3a8a;
+  color: #2563eb;
   margin-bottom: 0.25rem;
+  margin-top: 0;
 }
 
 .mobile-content p {
@@ -361,4 +361,84 @@
   .mobile-roadmap {
     display: block;
   }
+
+  .roadmap-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
 }
+
+@media (max-width: 768px) {
+  .roadmap-title {
+    font-size: 2rem;
+  }
+
+  .recruitment-roadmap {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .mobile-roadmap {
+    padding-left: 3.5rem; /* Give a bit more space for the line/icon */
+  }
+
+  .mobile-roadmap::before {
+    left: 1.5rem; /* Move line slightly left */
+  }
+
+  .mobile-icon-wrapper {
+    left: -3rem; /* Adjust icon position relative to step content */
+    /* Icon center should align with line.
+       Line at 1.5rem.
+       Content starts at 3.5rem (padding-left).
+       Distance from content start to line center = 3.5 - 1.5 = 2rem.
+       Icon width 48px (3rem). Center 1.5rem.
+       We want icon center to be at -2rem relative to content?
+       No.
+       Line is at absolute 1.5rem inside container.
+       Step content starts at 3.5rem.
+       So line is -2.0rem to the left of content.
+       Icon should be centered at -2.0rem.
+       Icon is 48px wide. Left should be -2.0rem - (48px/2) = -2rem - 1.5rem = -3.5rem.
+       Wait 48px is 3rem. Half is 1.5rem.
+       Let's stick to pixels for clarity or rems.
+       Line left: 1.5rem. Width 4px. Center ~ 1.5rem + 2px. Let's call it 1.6rem.
+       Mobile-roadmap padding-left: 3.5rem.
+       Step starts at 3.5rem.
+       Icon needs to be centered at 1.6rem.
+       Offset from step start = 1.6rem - 3.5rem = -1.9rem.
+       Icon width 48px ~ 3rem.
+       Icon left corner should be at Center - Width/2 = 1.6rem - 1.5rem = 0.1rem.
+       Offset from step start = 0.1rem - 3.5rem = -3.4rem.
+    */
+    left: -3.4rem;
+    /* Let's double check standard sizes. 1rem = 16px generally. */
+    width: 48px; height: 48px;
+  }
+
+  /* Let's simplify.
+     Line left: 24px (1.5rem).
+     Icon width: 48px. Center needs to be at 26px (Line center).
+     Icon left: 26 - 24 = 2px.
+     Wrapper padding-left: 64px (4rem).
+     Icon left: -62px (-3.875rem) from content? No.
+     Let's try a cleaner approach.
+  */
+  .mobile-roadmap {
+    padding-left: 4.5rem; /* More space */
+  }
+  .mobile-roadmap::before {
+    left: 2rem; /* Line at 32px */
+  }
+  .mobile-icon-wrapper {
+    /* Line center at 2rem (32px) + 2px = 34px.
+       Icon width 48px.
+       Icon left = 34 - 24 = 10px.
+       Content starts at 4.5rem = 72px.
+       Icon offset from content = 10px - 72px = -62px.
+       -62px / 16 = -3.875rem.
+    */
+    left: -4rem;
+  }
+}
+
