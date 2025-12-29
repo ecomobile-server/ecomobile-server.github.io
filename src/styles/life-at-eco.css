@@ -3,6 +3,12 @@
   background: #fff;
 }
 
+@media (max-width: 768px) {
+  .life-at-eco {
+    padding: 1rem 1.5rem;
+  }
+}
+
 .life-container {
   max-width: var(--content-max-width);
   margin: 0 auto;
@@ -29,6 +35,22 @@
   color: #212121;
   opacity: 0.5;
   line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .life-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .life-header {
+    margin-bottom: 2rem;
+  }
 }
 
 .life-grid {
@@ -83,4 +105,26 @@
   line-height: 1.8;
   text-align: left;
   font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 0;
+  }
+
+  .card h3 {
+    font-size: 1.25rem; /* 20px */
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 0.875rem; /* 14px */
+    text-align: center;
+  }
+
+  .icon-box {
+    max-width: 15rem; /* ~240px */
+    height: 15rem;
+    margin-bottom: 1rem;
+  }
 }
