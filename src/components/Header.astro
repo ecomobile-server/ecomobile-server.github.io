@@ -72,3 +72,18 @@ import "../styles/header.css";
     </div>
   </div>
 </header>
+
+<script>
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const details = document.querySelector(".nav-mobile");
+    if (!details) return;
+
+    const target = event.target as HTMLElement;
+
+    // If the menu is open and the click is outside the details element, close it
+    if (details.hasAttribute("open") && !details.contains(target)) {
+      details.removeAttribute("open");
+    }
+  });
+</script>
