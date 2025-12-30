@@ -44,6 +44,8 @@
 }
 
 .mentor-image-wrapper {
+  height: auto;
+  max-height: 450px;
   width: 100%;
   aspect-ratio: 1;
   margin-bottom: 1rem;

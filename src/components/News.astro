@@ -72,6 +72,39 @@ const { cards = defaultCards } = Astro.props;
         }
       </div>
     </div>
+
+    <!-- Desktop List Navigation Buttons -->
+    <button class="news-nav-btn prev" id="newsPrevBtn" aria-label="Scroll Left">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        class="feather feather-chevron-left"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><polyline points="15 18 9 12 15 6"></polyline></svg
+      >
+    </button>
+    <button
+      class="news-nav-btn next"
+      id="newsNextBtn"
+      aria-label="Scroll Right">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        class="feather feather-chevron-right"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><polyline points="9 18 15 12 9 6"></polyline></svg
+      >
+    </button>
   </div>
 </section>
 
@@ -136,6 +169,51 @@ const { cards = defaultCards } = Astro.props;
       ".news-scroll-wrapper"
     ) as HTMLElement;
 
+    // List Navigation
+    const newsPrevBtn = document.getElementById("newsPrevBtn");
+    const newsNextBtn = document.getElementById("newsNextBtn");
+
+    const updateNavButtons = () => {
+      if (!scrollWrapper || !newsPrevBtn || !newsNextBtn) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = scrollWrapper;
+      // Use a small tolerance for distinct float values
+      const maxScrollLeft = scrollWidth - clientWidth - 1;
+
+      if (scrollLeft <= 0) {
+        newsPrevBtn.style.display = "none";
+      } else {
+        newsPrevBtn.style.display = "flex";
+      }
+
+      if (scrollLeft >= maxScrollLeft) {
+        newsNextBtn.style.display = "none";
+      } else {
+        newsNextBtn.style.display = "flex";
+      }
+    };
+
+    if (newsPrevBtn && scrollWrapper) {
+      newsPrevBtn.addEventListener("click", () => {
+        scrollWrapper.scrollBy({ left: -1000, behavior: "smooth" });
+        // Update after scroll animation roughly finishes or immediately and let scroll listener handle it
+      });
+    }
+
+    if (newsNextBtn && scrollWrapper) {
+      newsNextBtn.addEventListener("click", () => {
+        scrollWrapper.scrollBy({ left: 1000, behavior: "smooth" });
+      });
+    }
+
+    if (scrollWrapper) {
+      scrollWrapper.addEventListener("scroll", updateNavButtons);
+      // Initial check
+      updateNavButtons();
+      // Check on resize too
+      window.addEventListener("resize", updateNavButtons);
+    }
+
     // Modal Elements
     const modal = document.getElementById("reelsModal");
     const videoObj = document.getElementById("reelsVideo") as HTMLVideoElement;
@@ -173,18 +251,6 @@ const { cards = defaultCards } = Astro.props;
       if (titleObj) titleObj.textContent = item.title;
       videoObj.play().catch((e) => console.log("Auto-play prevented", e));
     };
-
-    // Open Modal
-    newsCards.forEach((card, index) => {
-      card.addEventListener("click", () => {
-        if (modal) {
-          currentIndex = index; // Assuming direct mapping 1:1
-          loadVideo(currentIndex);
-          modal.classList.add("active");
-          document.body.style.overflow = "hidden";
-        }
-      });
-    });
 
     // Close Modal Function
     const closeModal = () => {
@@ -276,14 +342,16 @@ const { cards = defaultCards } = Astro.props;
       }
     });
 
-    // Drag to scroll functionality (Existing)
+    // Drag to scroll functionality
     if (scrollWrapper) {
       let isDown = false;
       let startX: number;
       let scrollLeft: number;
+      let isDragging = false; // Flag to distinguish drag vs click
 
       scrollWrapper.addEventListener("mousedown", (e: MouseEvent) => {
         isDown = true;
+        isDragging = false; // Reset drag flag
         scrollWrapper.classList.add("active");
         startX = e.pageX - scrollWrapper.offsetLeft;
         scrollLeft = scrollWrapper.scrollLeft;
@@ -297,14 +365,53 @@ const { cards = defaultCards } = Astro.props;
       scrollWrapper.addEventListener("mouseup", () => {
         isDown = false;
         scrollWrapper.classList.remove("active");
+        // Keep isDragging true here so click event can check it
+        // Resetting it immediately here might clear it before click fires?
+        // Actually click fires after mouseup. We should reset it in a slightly delayed manner or just use a setTimeout?
+        // Or better: The click listener on the cards needs access to this state.
+        // Let's attach the click listener logic HERE or expose the state?
+        // Since the cards are children of scrollWrapper, the click event bubbles up or captures?
+        // The card click listeners are separate. We can use a capture phase or check a global variable/attribute.
+        // Simplest: Make the variable accessible to the card click handlers in this scope.
+        setTimeout(() => {
+          isDragging = false;
+        }, 0); // Very short timeout to allow click event to read true, then reset
       });
 
       scrollWrapper.addEventListener("mousemove", (e: MouseEvent) => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - scrollWrapper.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed multiplier
+        const walk = (x - startX) * 2;
+
+        // If moved more than a few pixels, consider it a drag
+        if (Math.abs(x - startX) > 5) {
+          isDragging = true;
+        }
+
         scrollWrapper.scrollLeft = scrollLeft - walk;
+      });
+
+      // Update Card Click Listeners to check for drag
+      newsCards.forEach((card, index) => {
+        // The cardVideo and cardTitle are already collected in the `items` array.
+        // We can use `items[index]` to get the video src and title.
+
+        card.addEventListener("click", (e) => {
+          // If we were dragging, prevent opening the modal
+          if (isDragging) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+
+          if (modal) {
+            currentIndex = index;
+            loadVideo(currentIndex);
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
       });
     }
   });

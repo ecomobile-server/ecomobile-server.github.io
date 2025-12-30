@@ -1,7 +1,7 @@
 .footer {
   background: #2A6CE0;
   opacity: 0.9;
-  padding: 60px;
+  padding: 50px;
   color: #ffffff;
 }
 
@@ -36,7 +36,7 @@
 
 .footer-info {
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.8;
   opacity: 0.95;
 }
@@ -62,7 +62,7 @@
 .footer-section-title {
   font-weight: 400;
   line-height: 1.5;
-  font-size: 24px;
+  font-size: 20px;
   margin: 0 0 24px 0;
 }
 

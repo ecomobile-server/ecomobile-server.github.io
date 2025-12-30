@@ -6,8 +6,52 @@
 .news-container {
   max-width: var(--content-max-width);
   margin: 0 auto;
-  /* padding-left: 80px; */
+  padding-left: 16px;
   padding-right: 6px;
+  position: relative; /* For nav buttons */
+}
+
+.news-nav-btn {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: #ffffff; /* White arrow */
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.news-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.news-nav-btn svg {
+  width: 30px;
+  height: 30px;
+}
+
+.news-nav-btn.prev {
+  left: 30px;
+}
+
+.news-nav-btn.next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .news-nav-btn {
+    display: none; /* Hide on mobile/tablet where touch is primary */
+  }
 }
 
 .news-title {

@@ -13,8 +13,8 @@
    We override its horizontal padding here to avoid hard-coding padding on `.header`
    (which would stack with `.container` and break smaller screens). */
 .header-container {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  /* padding-left: 1.5rem;
+  padding-right: 1.5rem; */
   max-width: var(--content-max-width);
 }
 
@@ -241,18 +241,16 @@
 }
 
 @media (min-width: 1400px) {
-
-
   .header-container {
     gap: 2rem;
   }
 
   .logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .logo svg {
-    width: 61px;
+    width: 50px;
   }
 
   /* .nav {
@@ -265,7 +263,7 @@
   }
 
   .header .btn-primary {
-    padding: 1.125rem 2.688rem;
+    padding: 1rem 2rem;
     font-size: 1.25rem;
   }
 }

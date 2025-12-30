@@ -33,7 +33,7 @@
   .benefits-layout {
     flex-direction: row;
     align-items: flex-start;
-    gap: 5rem;
+    gap: 3rem;
   }
 }
 
@@ -65,15 +65,17 @@
 
 @media (min-width: 1024px) {
   .benefits-intro {
-    flex: 0 0 32%; /* Approx 1/3 width */
+    flex: 0 0 28%; /* Approx 1/3 width */
     position: sticky;
     top: 0rem;
     align-items: flex-start;
     text-align: left;
+    align-self: flex-end;
   }
 
   .benefits-intro .btn-primary {
     display: inline-flex;
+    margin-bottom: 4rem;
   }
 
   .decoration-icon {
@@ -82,8 +84,8 @@
   }
 
   .decoration-icon svg {
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
   }
 
   .benefits-title {
@@ -95,16 +97,18 @@
   color: var(--color-primary);
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
 .benefits-desc {
   color: var(--color-text-light);
-  line-height: 1.6;
-  font-size: 1.125rem;
+  line-height: 1.8;
+  font-size: 1.25rem;
   font-weight: 400;
+  margin-bottom: 4rem;
+  margin-top: 0;
 }
 
 /* Right Column - Grid */

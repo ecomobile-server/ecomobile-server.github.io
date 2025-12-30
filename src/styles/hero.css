@@ -12,10 +12,10 @@
   width: 100%;
   max-width: var(--content-max-width);
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   position: relative;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  /* padding: 0 1.5rem; */
 }
 
 /* Content Side */
@@ -107,7 +107,7 @@
 .hero-team-img {
   position: relative;
   z-index: 2;
-  height: 85%;
+  height: 90%;
   width: auto;
   object-fit: contain;
 }
@@ -198,6 +198,10 @@
 
   .hero-team-img {
     height: 90%;
+  }
+
+  .hero-container {
+    padding: 0 1.5rem;
   }
 }
 

@@ -26,23 +26,53 @@ import "../styles/ecomobile.css";
 
     <div class="stats-grid">
       <div class="stat-item">
-        <div class="stat-number" data-target="270" data-suffix="M+">0</div>
+        <div
+          class="stat-number"
+          data-target="270"
+          data-suffix="M+"
+          data-duration="200">
+          0
+        </div>
         <div class="stat-label">Tổng lượt tải</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" data-target="35" data-suffix="+">0</div>
+        <div
+          class="stat-number"
+          data-target="35"
+          data-suffix="+"
+          data-duration="400">
+          0
+        </div>
         <div class="stat-label">Tổng sản phẩm</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" data-target="180" data-suffix="+">0</div>
+        <div
+          class="stat-number"
+          data-target="180"
+          data-suffix="+"
+          data-duration="600">
+          0
+        </div>
         <div class="stat-label">Quốc gia</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" data-target="60" data-suffix="+">0</div>
+        <div
+          class="stat-number"
+          data-target="60"
+          data-suffix="+"
+          data-duration="800">
+          0
+        </div>
         <div class="stat-label">Quy mô nhân sự</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" data-target="25" data-suffix="">25</div>
+        <div
+          class="stat-number"
+          data-target="25"
+          data-suffix=""
+          data-duration="1000">
+          25
+        </div>
         <div class="stat-label">Độ tuổi trung bình</div>
       </div>
     </div>
@@ -64,7 +94,8 @@ import "../styles/ecomobile.css";
           const counter = entry.target as HTMLElement;
           const target = parseInt(counter.dataset.target || "0");
           const suffix = counter.dataset.suffix || "";
-          const duration = 1000; // 2 seconds
+          // Read duration from data attribute or default to 2000ms
+          const duration = parseInt(counter.dataset.duration || "2000");
           const startTime = Date.now();
 
           const updateCounter = () => {
