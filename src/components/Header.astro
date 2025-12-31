@@ -4,7 +4,7 @@ import "../styles/header.css";
 
 <header class="header">
   <div class="header-container">
-    <div class="logo">
+    <a href="#" class="logo">
       <svg
         width="61"
         height="60"
@@ -25,7 +25,7 @@ import "../styles/header.css";
           fill="#2A6CE0"></path>
       </svg>
       <span class="logo-text">EPM Gen 2.0</span>
-    </div>
+    </a>
 
     <nav class="nav">
       <a href="#life-at-eco">Life at Eco</a>
@@ -89,6 +89,62 @@ import "../styles/header.css";
     // If the menu is open and the click is outside the details element, close it
     if (details.hasAttribute("open") && !details.contains(target)) {
       details.removeAttribute("open");
+    }
+  });
+
+  // Active navigation state based on scroll position
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(
+    ".nav a[href^='#'], .nav-mobile-panel a[href^='#']"
+  );
+
+  // Function to update active link
+  function updateActiveLink(id: string) {
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (href === `#${id}`) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  // Intersection Observer to detect which section is in view
+  const observerOptions = {
+    root: null,
+    rootMargin: "-80px 0px -60% 0px", // Account for header height and focus on top portion
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        if (id) {
+          updateActiveLink(id);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Handle initial state on page load
+  window.addEventListener("load", () => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      updateActiveLink(hash);
+    } else {
+      // Default to first section if no hash
+      const firstSection = sections[0];
+      if (firstSection) {
+        const id = firstSection.getAttribute("id");
+        if (id) updateActiveLink(id);
+      }
     }
   });
 </script>

@@ -25,7 +25,7 @@
   text-align: center;
   color: #212121;
   opacity: 0.5;
-  margin: 0 auto 3.75rem;
+  margin: 0 auto 1.75rem;
   padding: 0 1.25rem;
 }
 
@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
-  margin-top: 3.75rem;
+  margin-top: 1.75rem;
 }
 
 .mentor-card {
@@ -45,7 +45,7 @@
 
 .mentor-image-wrapper {
   height: auto;
-  max-height: 450px;
+  max-height: 400px;
   width: 100%;
   aspect-ratio: 1;
   margin-bottom: 1rem;

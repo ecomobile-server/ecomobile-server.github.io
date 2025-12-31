@@ -278,7 +278,7 @@
     border-radius: 3.75rem;
     border-top-left-radius: 0;
     /* User removed bottom-left radius reset */
-    transform: translate(15%, 2rem);
+    transform: translate(5%, 2rem);
   }
   .card-4 .card-icon-box {
     top: -20px;

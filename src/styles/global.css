@@ -17,6 +17,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Add scroll offset for anchor links to prevent header from covering content */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 body {
   margin: 0;
   padding: 0rem;

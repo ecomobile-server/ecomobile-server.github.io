@@ -48,6 +48,13 @@
   color: #2A6CE0;
   line-height: 1;
   flex: 0 0 auto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }
 
 .logo svg {
@@ -105,6 +112,11 @@
 }
 
 .nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active state */
+.nav a.active::after {
   transform: scaleX(1);
 }
 
@@ -191,6 +203,10 @@
 
 .nav-mobile-panel a:hover {
   color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.nav-mobile-panel a.active {
   background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
