@@ -34,22 +34,22 @@ const {
     {
       icon: "facebook",
       label: "Facebook",
-      url: "#",
+      url: "https://www.facebook.com/ecomobilevn",
     },
     {
       icon: "linkedin",
       label: "LinkedIn",
-      url: "#",
+      url: "https://www.linkedin.com/company/ecomobilevn",
     },
     {
       icon: "youtube",
       label: "YouTube",
-      url: "#",
+      url: "https://www.youtube.com/@ecomobile8173",
     },
     {
       icon: "website",
       label: "Website",
-      url: "#",
+      url: "https://ecomobile.vn",
     },
   ],
 } = Astro.props;
@@ -100,7 +100,12 @@ const {
         <div class="footer-socials">
           {
             socialLinks.map((link) => (
-              <a href={link.url} class="footer-social-link" title={link.label}>
+              <a
+                href={link.url}
+                class="footer-social-link"
+                title={link.label}
+                target="_blank"
+                rel="noopener noreferrer">
                 {link.icon === "facebook" && (
                   <svg
                     width="56"
