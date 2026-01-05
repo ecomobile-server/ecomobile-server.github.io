@@ -43,7 +43,7 @@ import "../styles/hero.css";
         trường toàn cầu.
       </p>
       <p class="hero-timeline">
-        <strong>Thời gian ứng tuyển: 12/12/2025 - 31/12/2025</strong>
+        <strong>Thời gian ứng tuyển: 08/01/2026 - 28/02/2026</strong>
       </p>
       <a
         href="https://forms.gle/NiqcbMifh4uLr6QB8"
@@ -65,3 +65,16 @@ import "../styles/hero.css";
     </div>
   </div>
 </section>
+
+<script>
+  import { trackEvent, trackCTAClick } from "../utils/analytics";
+
+  // Track Hero CTA click
+  const heroCTA = document.querySelector(".hero-section .btn-primary");
+  if (heroCTA) {
+    heroCTA.addEventListener("click", () => {
+      trackEvent("Banner_CTA_Clicked");
+      trackCTAClick("Hero banner");
+    });
+  }
+</script>

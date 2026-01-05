@@ -1,11 +1,12 @@
 ---
 const apiKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
 const apiHost = import.meta.env.PUBLIC_POSTHOG_HOST;
+const environment = import.meta.env.PUBLIC_ENVIRONMENT || "development";
 ---
 
 <script
   is:inline
-  define:vars={{ apiKey, apiHost }}
+  define:vars={{ apiKey, apiHost, environment }}
   type="text/javascript"
   id="posthog-js"
 >
@@ -60,10 +61,31 @@ const apiHost = import.meta.env.PUBLIC_POSTHOG_HOST;
       (e.__SV = 1));
   })(document, window.posthog || []);
 
-  // Init
-  if (apiKey && apiHost) {
+  // Init only in production
+  if (apiKey && apiHost && environment === "production") {
     window.posthog.init(apiKey, {
       api_host: apiHost,
+      // Enable Session Replay for heatmaps and session recording
+      session_recording: {
+        recordCanvas: true,
+        recordCrossOriginIframes: false,
+      },
+      // Enable autocapture for click heatmaps
+      autocapture: {
+        dom_event_allowlist: ["click", "change", "submit"],
+        url_allowlist: [window.location.origin],
+        element_allowlist: [
+          "a",
+          "button",
+          "input",
+          "select",
+          "textarea",
+          "label",
+        ],
+      },
+      // Capture pageviews and pageLeaves
+      capture_pageview: true,
+      capture_pageleave: true,
     });
   }
 </script>

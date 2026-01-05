@@ -211,3 +211,23 @@ import "../styles/benefits.css";
     </div>
   </div>
 </section>
+
+<script>
+  import {
+    trackSectionView,
+    trackEvent,
+    trackCTAClick,
+  } from "../utils/analytics";
+
+  // Track section visibility
+  trackSectionView("benefits", "ValueSEC_Show");
+
+  // Track CTA click in Benefits section
+  const benefitsCTA = document.querySelector(".benefits-section .btn-primary");
+  if (benefitsCTA) {
+    benefitsCTA.addEventListener("click", () => {
+      trackEvent("ValueSEC_CTA_Clicked");
+      trackCTAClick("Giá trị");
+    });
+  }
+</script>

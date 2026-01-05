@@ -21,7 +21,7 @@ const testimonials = [
     role: "Project Manager",
     image: "/images/inspiration/van_tu.png",
     quote:
-      "Với tôi, Eco giống như một người bố có đạo đức và nghiêm khắc. Bố tin con, tôn trọng con và trao quyền cho con được tự quyết, nhưng không nuông chiều. Bố cho con nhìn thẳng vào sự thật, kể cả những con số hay kết quả chưa tốt, để con tự chịu trách nhiệm với lựa chọn của mình. Bố cho con thời gian để học, để sai và để trưởng thành, nhưng khi cần thì yêu cầu kỷ luật và kết quả rõ ràng. Và dù mỗi đứa con có cá tính khác nhau, bố vẫn luôn nhắc rằng tự do cá nhân phải đi cùng trách nhiệm với gia đình, vì mục tiêu chung cuối cùng không chỉ là thành công, mà là hạnh phúc.",
+      "Với tôi, Eco giống như một người cha có đạo đức và nghiêm khắc. Cha tin con, tôn trọng con và trao quyền cho con được tự quyết, nhưng không nuông chiều. Cha cho con nhìn thẳng vào sự thật, kể cả những con số hay kết quả chưa tốt, để con tự chịu trách nhiệm với lựa chọn của mình. Cha cho con thời gian để học, để sai và để trưởng thành, nhưng khi cần thì yêu cầu kỷ luật và kết quả rõ ràng. Và dù mỗi đứa con có cá tính khác nhau, cha vẫn luôn nhắc rằng tự do cá nhân phải đi cùng trách nhiệm với gia đình, vì mục tiêu chung cuối cùng không chỉ là thành công, mà là hạnh phúc.",
   },
   {
     name: "Bạn Phương Linh",
@@ -216,4 +216,39 @@ const testimonials = [
 
   // Initialize
   updateCarousel();
+</script>
+
+<script>
+  import { trackSectionView, trackEvent } from "../utils/analytics";
+
+  // Track section visibility
+  const inspirationSection = document.querySelector(".inspiration-section");
+  if (inspirationSection && !inspirationSection.id) {
+    inspirationSection.id = "inspire";
+  }
+  trackSectionView("inspire", "InspireSEC_Show");
+
+  // Track arrow clicks
+  const inspirePrevBtn = document.getElementById("prevBtn");
+  const inspireNextBtn = document.getElementById("nextBtn");
+
+  if (inspirePrevBtn) {
+    inspirePrevBtn.addEventListener("click", () => {
+      trackEvent("InspireSEC_Arrow_Clicked", { direction: "prev" });
+    });
+  }
+
+  if (inspireNextBtn) {
+    inspireNextBtn.addEventListener("click", () => {
+      trackEvent("InspireSEC_Arrow_Clicked", { direction: "next" });
+    });
+  }
+
+  // Track avatar clicks
+  const avatarItems = document.querySelectorAll(".avatar-item");
+  avatarItems.forEach((avatar) => {
+    avatar.addEventListener("click", () => {
+      trackEvent("InspireSEC_Avatar_Clicked");
+    });
+  });
 </script>

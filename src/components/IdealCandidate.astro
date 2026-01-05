@@ -210,3 +210,15 @@ import "../styles/ideal-candidate.css";
     </div>
   </div>
 </section>
+
+<script>
+  import { trackSectionView } from "../utils/analytics";
+
+  // Track section visibility - this is the "Tiêu chí ứng viên" section
+  // Note: This section doesn't have an id, we need to add one or use a different selector
+  const section = document.querySelector(".ideal-candidate-section");
+  if (section && !section.id) {
+    section.id = "requirements";
+  }
+  trackSectionView("requirements", "RequirementSEC_Show");
+</script>

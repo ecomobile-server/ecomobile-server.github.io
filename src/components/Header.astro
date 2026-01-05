@@ -79,6 +79,8 @@ import "../styles/header.css";
 </header>
 
 <script>
+  import { trackEvent, trackCTAClick } from "../utils/analytics";
+
   // Close mobile menu when clicking outside
   document.addEventListener("click", (event) => {
     const details = document.querySelector(".nav-mobile");
@@ -147,4 +149,34 @@ import "../styles/header.css";
       }
     }
   });
+
+  // Track navigation clicks
+  const navLifeLinks = document.querySelectorAll('a[href="#life-at-eco"]');
+  navLifeLinks.forEach((link) => {
+    link.addEventListener("click", () => trackEvent("Nav_Life_Clicked"));
+  });
+
+  const navValueLinks = document.querySelectorAll('a[href="#benefits"]');
+  navValueLinks.forEach((link) => {
+    link.addEventListener("click", () => trackEvent("Nav_Value_Clicked"));
+  });
+
+  const navRoadmapLinks = document.querySelectorAll('a[href="#roadmap"]');
+  navRoadmapLinks.forEach((link) => {
+    link.addEventListener("click", () => trackEvent("Nav_Roadmap_Clicked"));
+  });
+
+  const navAboutLinks = document.querySelectorAll('a[href="#about"]');
+  navAboutLinks.forEach((link) => {
+    link.addEventListener("click", () => trackEvent("Nav_About_Clicked"));
+  });
+
+  // Track CTA button in header
+  const headerCTA = document.querySelector(".header .btn-primary");
+  if (headerCTA) {
+    headerCTA.addEventListener("click", () => {
+      trackEvent("Nav_CTA_Clicked");
+      trackCTAClick("Navigation");
+    });
+  }
 </script>

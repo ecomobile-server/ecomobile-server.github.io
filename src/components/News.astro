@@ -416,3 +416,38 @@ const { cards = defaultCards } = Astro.props;
     }
   });
 </script>
+
+<script>
+  import { trackSectionView, trackEvent } from "../utils/analytics";
+
+  // Track section visibility
+  const newsSection = document.querySelector(".news-section");
+  if (newsSection && !newsSection.id) {
+    newsSection.id = "news";
+  }
+  trackSectionView("news", "NewsSEC_Show");
+
+  // Track arrow clicks for news navigation
+  const newsPrevBtn = document.getElementById("newsPrevBtn");
+  const newsNextBtn = document.getElementById("newsNextBtn");
+
+  if (newsPrevBtn) {
+    newsPrevBtn.addEventListener("click", () => {
+      trackEvent("NewsSEC_Arrow_Clicked", { direction: "prev" });
+    });
+  }
+
+  if (newsNextBtn) {
+    newsNextBtn.addEventListener("click", () => {
+      trackEvent("NewsSEC_Arrow_Clicked", { direction: "next" });
+    });
+  }
+
+  // Track video clicks
+  const modalVideos = document.querySelectorAll(".news-card");
+  modalVideos.forEach((card) => {
+    card.addEventListener("click", () => {
+      trackEvent("NewsSEC_Video_Clicked");
+    });
+  });
+</script>

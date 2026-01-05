@@ -64,3 +64,14 @@ import "../styles/mentors.css";
     </div>
   </div>
 </section>
+
+<script>
+  import { trackSectionView } from "../utils/analytics";
+
+  // Track section visibility
+  const section = document.querySelector(".mentors");
+  if (section && !section.id) {
+    section.id = "mentors";
+  }
+  trackSectionView("mentors", "MentorSEC_Show");
+</script>

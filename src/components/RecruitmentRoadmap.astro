@@ -155,3 +155,11 @@ const steps = [
     observer.observe(roadmapSection);
   }
 </script>
+
+<script>
+  import { trackSectionView } from '../utils/analytics';
+
+  // Track section visibility
+  trackSectionView('roadmap', 'RoadmapSEC_Show');
+</script>
+

@@ -144,8 +144,26 @@ const carouselGroups = [
     }
 
     private init() {
-      this.prevBtn.addEventListener("click", () => this.prev());
-      this.nextBtn.addEventListener("click", () => this.next());
+      this.prevBtn.addEventListener("click", () => {
+        this.prev();
+        // Track arrow click for Life at Eco section
+        if (typeof window !== "undefined" && (window as any).trackEvent) {
+          (window as any).trackEvent("LifeSEC_Media_Arrow_Clicked", {
+            direction: "prev",
+          });
+        }
+      });
+
+      this.nextBtn.addEventListener("click", () => {
+        this.next();
+        // Track arrow click for Life at Eco section
+        if (typeof window !== "undefined" && (window as any).trackEvent) {
+          (window as any).trackEvent("LifeSEC_Media_Arrow_Clicked", {
+            direction: "next",
+          });
+        }
+      });
+
       this.indicators.forEach((indicator, index) => {
         indicator.addEventListener("click", () => this.goTo(index));
       });
@@ -216,4 +234,13 @@ const carouselGroups = [
   document.querySelectorAll(".carousel-container").forEach((container) => {
     new Carousel(container as HTMLElement);
   });
+</script>
+
+<script>
+  import { trackEvent } from "../utils/analytics";
+
+  // Make trackEvent available globally for carousel
+  if (typeof window !== "undefined") {
+    (window as any).trackEvent = trackEvent;
+  }
 </script>

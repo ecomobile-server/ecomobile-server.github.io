@@ -1,11 +1,30 @@
 ---
 import PostHog from '../components/posthog.astro';
 import "../styles/global.css";
+
+const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
+const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
 ---
 
 <html lang="vi">
   <head>
     <PostHog />
+
+    <!-- Google Analytics 4 -->
+    {ga4MeasurementId && environment === 'production' && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}></script>
+        <script is:inline define:vars={{ ga4MeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){window.dataLayer.push(arguments);};
+          window.gtag('js', new Date());
+          window.gtag('config', ga4MeasurementId, {
+            send_page_view: true, // Let GA4 handle page views with built-in traffic source tracking
+          });
+        </script>
+      </>
+    )}
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -22,3 +41,20 @@ import "../styles/global.css";
     <slot />
   </body>
 </html>
+
+<script>
+  import { initScrollTracking, getDeviceType } from '../utils/analytics';
+
+  // Initialize tracking on load
+  window.addEventListener('load', () => {
+    // Set device type as user property for all GA4 events
+    if (window.gtag) {
+      window.gtag('set', 'user_properties', {
+        device_type: getDeviceType()
+      });
+    }
+
+    // Initialize scroll tracking
+    initScrollTracking();
+  });
+</script>

@@ -15,7 +15,7 @@ const {
   title = "Bạn có muốn trở thành thế hệ PM mới của ngành Mobile App cùng với",
   highlightText = "EPM Gen 2.0?",
   subtitle = "Hoàn tất hồ sơ ứng tuyển để chính thức bắt đầu hành trình. Eco Mobile rất mong chờ những chia sẻ tâm huyết từ bạn.",
-  deadline = "31/12/2025",
+  deadline = "28/02/2026",
   buttonText = "Nộp đơn ứng tuyển",
   buttonLink = "https://forms.gle/NiqcbMifh4uLr6QB8",
   notes = [
@@ -127,5 +127,25 @@ const {
     if (ctaSection) {
       observer.observe(ctaSection);
     }
+  }
+</script>
+
+<script>
+  import {
+    trackSectionView,
+    trackEvent,
+    trackCTAClick,
+  } from "../utils/analytics";
+
+  // Track section visibility
+  trackSectionView("apply", "ApplicationSEC_Show");
+
+  // Track CTA button click
+  const ctaButton = document.querySelector(".cta-button");
+  if (ctaButton) {
+    ctaButton.addEventListener("click", () => {
+      trackEvent("ApplicationSEC_CTA_Clicked");
+      trackCTAClick("Form");
+    });
   }
 </script>

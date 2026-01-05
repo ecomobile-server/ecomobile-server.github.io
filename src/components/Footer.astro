@@ -223,3 +223,24 @@ const {
     </div>
   </div>
 </footer>
+
+<script>
+  import { trackEvent } from "../utils/analytics";
+
+  // Track footer social media link clicks
+  const footerLinks = document.querySelectorAll(".footer-social-link");
+  footerLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const title = link.getAttribute("title");
+      if (title === "Facebook") {
+        trackEvent("Footer_Facebook_Clicked");
+      } else if (title === "LinkedIn") {
+        trackEvent("Footer_LinkedIn_Clicked");
+      } else if (title === "YouTube") {
+        trackEvent("Footer_Youtube_Clicked");
+      } else if (title === "Website") {
+        trackEvent("Footer_Website_Clicked");
+      }
+    });
+  });
+</script>

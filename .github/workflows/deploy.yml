@@ -31,6 +31,8 @@ jobs:
         env:
           PUBLIC_POSTHOG_API_KEY: ${{ secrets.PUBLIC_POSTHOG_API_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}
+          PUBLIC_GA4_MEASUREMENT_ID: ${{ secrets.PUBLIC_GA4_MEASUREMENT_ID }}
+          PUBLIC_ENVIRONMENT: production
         # with:
           # path: . # The root location of your Astro project inside the repository. (optional)
           # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)

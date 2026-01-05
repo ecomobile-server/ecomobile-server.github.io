@@ -127,3 +127,10 @@ import "../styles/ecomobile.css";
     animateCounters();
   }
 </script>
+
+<script>
+  import { trackSectionView } from "../utils/analytics";
+
+  // Track section visibility
+  trackSectionView("about", "AboutSEC_Show");
+</script>
