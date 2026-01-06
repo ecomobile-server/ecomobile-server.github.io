@@ -1,6 +1,21 @@
 ---
 import PostHog from '../components/posthog.astro';
+import { SEO } from "astro-seo";
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+}
+
+const {
+  title = "EPM Gen 2.0 - Eco Mobile",
+  description = "Chương trình Quản trị viên Tập sự EPM Gen 2.0 tại Eco Mobile. Khám phá cơ hội phát triển sự nghiệp và trở thành nhà lãnh đạo tương lai.",
+  image = "/images/og/banner.webp",
+  keywords = "tuyển dụng Project Manager, Project Manager Eco Mobile, việc làm Project Manager, IT Project Manager, PM phần mềm, PM công nghệ, Software Project Manager, Tech Project Manager, quản lý dự án IT, việc làm IT, Eco Mobile, EPM, Gen 2.0"
+} = Astro.props;
 
 const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
 const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
@@ -8,6 +23,32 @@ const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
 
 <html lang="vi">
   <head>
+    <SEO
+      charset="UTF-8"
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: image,
+          url: "https://epm.ecomobile.vn",
+        },
+        optional: {
+          locale: "vi_VN",
+          siteName: "EPM Gen 2.0 - Eco Mobile",
+        }
+      }}
+       extend={{
+        link: [{ rel: "icon", href: "/favicon.svg" }],
+        meta: [
+          { name: "viewport", content: "width=device-width" },
+          { name: "generator", content: Astro.generator },
+          { name: "keywords", content: keywords },
+        ],
+      }}
+    />
+
     <PostHog />
 
     <!-- Google Analytics 4 -->
@@ -25,17 +66,12 @@ const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
       </>
     )}
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>EPM Gen 2.0 - Eco Mobile</title>
   </head>
   <body>
     <slot />

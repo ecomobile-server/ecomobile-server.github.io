@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://epm.ecomobile.vn/sitemap-index.xml
