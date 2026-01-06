@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = "EPM Gen 2.0 - Eco Mobile",
-  description = "Chương trình EPM Gen 2.0 tại Eco Mobile. Khám phá cơ hội phát triển sự nghiệp và trở thành nhà lãnh đạo tương lai.",
+  title = "Tuyển dụng Project Manager - EPM Gen 2.0 - Eco Mobile",
+  description = "Tuyển dụng Project Manager tại Eco Mobile thông qua chương trình EPM Gen 2.0. Cơ hội phát triển sự nghiệp và trở thành nhà lãnh đạo tương lai.",
   image = "/images/og/banner.jpg",
   keywords = "tuyển dụng Project Manager, Project Manager Eco Mobile, việc làm Project Manager, IT Project Manager, PM phần mềm, PM công nghệ, Software Project Manager, Tech Project Manager, quản lý dự án IT, việc làm IT, Eco Mobile, EPM, Gen 2.0"
 } = Astro.props;
@@ -42,7 +42,10 @@ const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
         }
       }}
        extend={{
-        link: [{ rel: "icon", href: "/favicon.svg" }],
+        link: [
+          { rel: "icon", href: "/favicon.ico" },
+          { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }
+        ],
         meta: [
           { name: "viewport", content: "width=device-width" },
           { name: "generator", content: Astro.generator },

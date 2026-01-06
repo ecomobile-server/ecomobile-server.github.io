@@ -67,7 +67,7 @@
 
 @media (min-width: 1920px) {
   .desktop-roadmap {
-    transform: translateX(-55%) translateY(-13%);
+    transform: translateX(-55%) translateY(-11%);
   }
 
   .desktop-roadmap .roadmap-title {
