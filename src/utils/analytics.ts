@@ -8,6 +8,8 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
+    fbq?: (...args: any[]) => void;
+    _fbq?: any;
   }
 }
 
@@ -79,6 +81,16 @@ export function trackEvent(eventName: string, properties?: Record<string, any>) 
   } else {
     // Otherwise wait for it to load
     waitForGtag(sendEvent);
+  }
+
+  // Send Facebook Pixel event if available
+  if (window.fbq) {
+    try {
+      // Use 'trackCustom' for custom events, or specific standard events if they match FB's standard events
+      window.fbq('trackCustom', eventName, enrichedProperties);
+    } catch (e) {
+      console.error('❌ FB tracking error:', e);
+    }
   }
 }
 
