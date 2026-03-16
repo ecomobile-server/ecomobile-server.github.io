@@ -5,11 +5,19 @@
  */
 
 declare global {
+  interface PostHogFeatureFlags {
+    capture?: (eventName: string, properties?: Record<string, any>) => void;
+    onFeatureFlags?: (callback: () => void) => void;
+    getFeatureFlag?: (key: string) => string | boolean | undefined;
+    getFeatureFlagPayload?: (key: string) => any;
+  }
+
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
     fbq?: (...args: any[]) => void;
     _fbq?: any;
+    posthog?: PostHogFeatureFlags;
   }
 }
 
@@ -55,6 +63,19 @@ function waitForGtag(callback: () => void, maxAttempts = 50) {
   }, 100); // Check every 100ms
 }
 
+function waitForPostHog(callback: () => void, maxAttempts = 50) {
+  let attempts = 0;
+  const interval = setInterval(() => {
+    attempts++;
+    if (window.posthog) {
+      clearInterval(interval);
+      callback();
+    } else if (attempts >= maxAttempts) {
+      clearInterval(interval);
+    }
+  }, 100);
+}
+
 /**
  * Track event to GA4
  */
@@ -91,6 +112,35 @@ export function trackEvent(eventName: string, properties?: Record<string, any>) 
     } catch (e) {
       console.error('❌ FB tracking error:', e);
     }
+  }
+}
+
+/**
+ * Track event to PostHog when available
+ */
+export function trackPostHogEvent(
+  eventName: string,
+  properties?: Record<string, any>
+) {
+  const enrichedProperties = {
+    ...properties,
+    timestamp: new Date().toISOString(),
+  };
+
+  const sendEvent = () => {
+    if (window.posthog?.capture) {
+      try {
+        window.posthog.capture(eventName, enrichedProperties);
+      } catch (e) {
+        console.error('❌ PostHog tracking error:', e);
+      }
+    }
+  };
+
+  if (window.posthog?.capture) {
+    sendEvent();
+  } else {
+    waitForPostHog(sendEvent);
   }
 }
 
@@ -158,8 +208,12 @@ export function trackSectionView(sectionId: string, eventName: string) {
 /**
  * Track CTA click with position
  */
-export function trackCTAClick(position: string) {
+export function trackCTAClick(
+  position: string,
+  properties?: Record<string, any>
+) {
   trackEvent('LandingPg_CTA_Clicked', {
     cta_position: position,
+    ...properties,
   });
 }

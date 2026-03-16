@@ -1,5 +1,9 @@
 ---
 import "../styles/hero.css";
+
+const heroExperimentName = "hero_cta_text_experiment";
+const heroControlLabel = "Sẵn sàng thử thách";
+const heroDirectApplyLabel = "Ứng tuyển ngay";
 ---
 
 <section class="hero-section" id="hero">
@@ -48,8 +52,12 @@ import "../styles/hero.css";
       <a
         href="https://forms.gle/NiqcbMifh4uLr6QB8"
         class="btn-primary"
+        data-experiment={heroExperimentName}
+        data-ab-ready="false"
+        data-control-label={heroControlLabel}
+        data-direct-apply-label={heroDirectApplyLabel}
         target="_blank"
-        rel="noopener noreferrer">Sẵn sàng thử thách</a
+        rel="noopener noreferrer">{heroControlLabel}</a
       >
     </div>
 
@@ -67,14 +75,97 @@ import "../styles/hero.css";
 </section>
 
 <script>
-  import { trackEvent, trackCTAClick } from "../utils/analytics";
+  import { trackEvent, trackCTAClick, trackPostHogEvent } from "../utils/analytics";
+
+  const HERO_EXPERIMENT_NAME = "hero_cta_text_experiment";
+  const HERO_CONTROL_VARIANT = "control";
+  const HERO_TREATMENT_VARIANT = "direct_apply";
+  const HERO_EXPOSURE_EVENT = "HeroCTA_Experiment_Viewed";
+  const HERO_FLAG_TIMEOUT_MS = 1500;
 
   // Track Hero CTA click
   const heroCTA = document.querySelector(".hero-section .btn-primary");
   if (heroCTA) {
+    const controlLabel = heroCTA.getAttribute("data-control-label") || "Sẵn sàng thử thách";
+    const directApplyLabel =
+      heroCTA.getAttribute("data-direct-apply-label") || "Ứng tuyển ngay";
+    let variant = HERO_CONTROL_VARIANT;
+    let label = controlLabel;
+    let hasTrackedExposure = false;
+    let hasResolvedVariant = false;
+
+    const revealButton = () => {
+      heroCTA.setAttribute("data-ab-ready", "true");
+    };
+
+    const trackExposure = () => {
+      if (hasTrackedExposure) return;
+
+      const properties = {
+        experiment_name: HERO_EXPERIMENT_NAME,
+        experiment_variant: variant,
+        cta_label: label,
+      };
+
+      trackEvent(HERO_EXPOSURE_EVENT, properties);
+      trackPostHogEvent(HERO_EXPOSURE_EVENT, properties);
+      hasTrackedExposure = true;
+    };
+
+    const applyVariant = () => {
+      if (hasResolvedVariant) return;
+
+      const posthogVariant = window.posthog?.getFeatureFlag?.(HERO_EXPERIMENT_NAME);
+      const payload = window.posthog?.getFeatureFlagPayload?.(HERO_EXPERIMENT_NAME);
+
+      if (posthogVariant === HERO_TREATMENT_VARIANT) {
+        variant = HERO_TREATMENT_VARIANT;
+        label =
+          typeof payload?.label === "string" && payload.label.trim()
+            ? payload.label.trim()
+            : directApplyLabel;
+      } else {
+        variant = HERO_CONTROL_VARIANT;
+        label =
+          typeof payload?.label === "string" && payload.label.trim()
+            ? payload.label.trim()
+            : controlLabel;
+      }
+
+      heroCTA.textContent = label;
+      revealButton();
+      trackExposure();
+      hasResolvedVariant = true;
+    };
+
+    if (window.posthog?.onFeatureFlags) {
+      window.posthog.onFeatureFlags(() => {
+        applyVariant();
+      });
+
+      window.setTimeout(() => {
+        applyVariant();
+      }, HERO_FLAG_TIMEOUT_MS);
+    } else {
+      revealButton();
+      trackExposure();
+      hasResolvedVariant = true;
+    }
+
     heroCTA.addEventListener("click", () => {
-      trackEvent("Banner_CTA_Clicked");
-      trackCTAClick("Hero banner");
+      const properties = {
+        experiment_name: HERO_EXPERIMENT_NAME,
+        experiment_variant: variant,
+        cta_label: label,
+      };
+
+      trackEvent("Banner_CTA_Clicked", properties);
+      trackCTAClick("Hero banner", properties);
+      trackPostHogEvent("Banner_CTA_Clicked", properties);
+      trackPostHogEvent("LandingPg_CTA_Clicked", {
+        cta_position: "Hero banner",
+        ...properties,
+      });
     });
   }
 </script>
