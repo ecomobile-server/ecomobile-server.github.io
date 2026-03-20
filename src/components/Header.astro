@@ -179,4 +179,34 @@ import "../styles/header.css";
       trackCTAClick("Navigation");
     });
   }
+
+  const header = document.querySelector(".header");
+  const heroSection = document.querySelector("#hero");
+  const applySection = document.querySelector("#apply");
+  const mobileCTAQuery = window.matchMedia("(max-width: 1189px)");
+
+  if (header && heroSection) {
+    const updateMobileCTAVisibility = () => {
+      const hasReachedApplySection = applySection
+        ? applySection.getBoundingClientRect().top <= window.innerHeight * 0.9
+        : false;
+      const shouldShowCTA =
+        mobileCTAQuery.matches &&
+        heroSection.getBoundingClientRect().bottom <= window.innerHeight * 0.1 &&
+        !hasReachedApplySection;
+
+      header.classList.toggle("header-mobile-cta-visible", shouldShowCTA);
+      document.body.classList.toggle("has-mobile-header-cta", shouldShowCTA);
+    };
+
+    updateMobileCTAVisibility();
+    window.addEventListener("scroll", updateMobileCTAVisibility, { passive: true });
+    window.addEventListener("resize", updateMobileCTAVisibility);
+
+    if (mobileCTAQuery.addEventListener) {
+      mobileCTAQuery.addEventListener("change", updateMobileCTAVisibility);
+    } else {
+      mobileCTAQuery.addListener(updateMobileCTAVisibility);
+    }
+  }
 </script>
