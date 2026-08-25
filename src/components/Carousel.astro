@@ -61,7 +61,7 @@ const carouselGroups = [
             data-interval={autoPlayInterval}>
             {group.images.map((image, index) => (
               <div class="carousel-slide" data-index={index}>
-                <img src={image.src} alt={image.alt} />
+                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
               </div>
             ))}
           </div>
