@@ -61,6 +61,10 @@
   order: 3; /* Third */
 }
 
+.description + .description {
+  margin-top: 1.5rem;
+}
+
 /* Desktop Layout Reset */
 @media (min-width: 1450px) {
   .content-wrapper {
