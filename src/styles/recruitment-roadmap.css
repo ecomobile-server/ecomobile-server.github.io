@@ -330,7 +330,7 @@
   /* Approx aspect ratio based on typical mobile screen flow or the image provided */
   aspect-ratio: 375 / 600;
   margin: 0 auto;
-  min-height: 600px;
+  max-width: 480px;
 }
 
 .mobile-svg-container {
@@ -345,6 +345,7 @@
 .mobile-svg-container svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 .mobile-step-visual {
@@ -353,7 +354,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
+  width: min(120px, 30%);
   transform: translateX(-50%);
 }
 
@@ -550,13 +551,50 @@
 
 
 /* Adjust specific steps if needed */
-.mobile-roadmap .s1 { left: 15%; top: 43%; }
-.mobile-roadmap .s2 { left: 35%; top: 62%; } /* Shifted up slightly */
-.mobile-roadmap .s3 { left: 53%; top: 21%; }
-.mobile-roadmap .s4 { left: 71%; top: 41%; }
-.mobile-roadmap .s5 { left: 85%; top: 6%; }
+/* Anchor each dot to the SVG road, independently of its label height. */
+.mobile-roadmap .above { transform: translate(-50%, calc(-100% + 5px)); }
+.mobile-roadmap .below { transform: translate(-50%, -5px); }
+.mobile-roadmap .s1 { left: 15%; top: 64.8%; }
+.mobile-roadmap .s2 { left: 35%; top: 62.611%; }
+.mobile-roadmap .s3 { left: 53%; top: 48.527%; }
+.mobile-roadmap .s4 { left: 71%; top: 42.48%; }
+.mobile-roadmap .s5 { left: 85%; top: 31.081%; }
 
 
+
+/* Fit the desktop road and its markers before the mobile breakpoint. */
+@media (min-width: 769px) and (max-width: 1107px) {
+  .recruitment-roadmap {
+    padding-top: 5rem;
+  }
+
+  .desktop-roadmap {
+    min-width: 0;
+    transform: translateX(-55%);
+  }
+
+  .desktop-roadmap .roadmap-title {
+    top: -4rem;
+    left: calc(55% - 50vw + 24px);
+    width: calc(100vw - 48px);
+    padding: 0;
+    transform: none;
+  }
+
+  .desktop-roadmap .step-icon,
+  .desktop-roadmap .step-icon svg {
+    width: 10.8vw;
+    height: 10.8vw;
+  }
+
+  .desktop-roadmap .step-line {
+    height: 10.8vw;
+  }
+
+  .desktop-roadmap .step-content h3 {
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+  }
+}
 
 /* --- Responsive Breakpoint --- */
 @media (max-width: 768px) {
@@ -586,4 +624,3 @@
     padding: 2rem 0rem 1rem;
   }
 }
-

@@ -1,0 +1,61 @@
+---
+import "../styles/featured-products.css";
+
+// ponytail: icon files in /public/images/featured/ — rename/add when apps change
+const products = [
+  { name: "Slideshow", image: "/images/featured/slideshow.png" },
+  { name: "Photo Video Maker", image: "/images/featured/v9pic.png" },
+  { name: "AI Hairstyle", image: "/images/featured/noirify.png" },
+  { name: "FlyNote", image: "/images/featured/note.png" },
+  { name: "PDF Reader", image: "/images/featured/pdf_reader.png" },
+  { name: "PDF Scanner", image: "/images/featured/pdf_scanner.png" },
+  { name: "Icon Changer", image: "/images/featured/icon_changer.png" },
+  { name: "QR Code", image: "/images/featured/qr_code.png" },
+  { name: "Food Scanner", image: "/images/featured/food_scanner.png" },
+  { name: "Speedtest", image: "/images/featured/speed_test.png" },
+];
+---
+
+<section class="featured-section">
+  <div class="featured-container">
+    <h2 class="featured-title">SẢN PHẨM TIÊU BIỂU</h2>
+    <div class="featured-scroll">
+      <div class="featured-grid">
+        {
+          [...products, ...products].map((p) => (
+            <div class="featured-item">
+              <img
+                src={p.image}
+                alt={p.name}
+                width="110"
+                height="110"
+                loading="lazy"
+              />
+              <p class="featured-name">{p.name}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      href="https://www.ecomobile.vn/san-pham/"
+      class="featured-more-btn"
+      target="_blank"
+      rel="noopener noreferrer">
+      Xem thêm
+      <svg
+        width="20"
+        height="14"
+        viewBox="0 0 20 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 7H18M18 7L12.5 1.5M18 7L12.5 12.5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+</section>

@@ -62,10 +62,11 @@
 .cta-highlight {
   display: inline-block;
   position: relative;
-  padding: 3px 20px;
+  padding: 14px 20px 4px;
   margin-left: 8px;
-  font-weight: 600;
-  color: #2563eb;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2A6CE0;
   background: transparent;
 }
 
@@ -297,7 +298,7 @@
     display: inline-block; /* Changed from block to inline-block or just remove block to let it flow if needed, but visually it looks like it could be inline-block with background */
     background: #BAE9F2;
     color: #2563eb;
-    padding: 2px 6px;
+    padding: 6px 6px 2px;
     margin-left: 0;
   }
 

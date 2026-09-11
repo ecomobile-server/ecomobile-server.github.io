@@ -12,8 +12,9 @@ interface Props {
 }
 
 const {
-  title = "Bắt đầu hành trình làm chủ sản phẩm của mình ngay hôm nay!",
-  highlightText = "",
+  title = "Bắt đầu hành trình",
+  titleAfter = "của mình ngay hôm nay!",
+  highlightText = "làm chủ sản phẩm",
   subtitle = "Eco Mobile chính là bệ phóng giúp bạn khai phá trọn vẹn tiềm năng trên hành trình phát triển sự nghiệp.",
   deadline = "31/01/2027",
   buttonText = "Gia nhập cùng Eco Mobile",
@@ -55,6 +56,8 @@ const {
       <h2 class="cta-title">
         {title}
         <span class="cta-highlight">{highlightText}</span>
+        <br />
+        {titleAfter}
       </h2>
 
       <p class="cta-subtitle">{subtitle}</p>
