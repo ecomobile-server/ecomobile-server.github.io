@@ -123,8 +123,12 @@
   }
 
   .featured-grid {
-    gap: 24px;
+    gap: 16px;
     margin-bottom: 36px;
+  }
+
+  .featured-item {
+    flex: 0 0 110px;
   }
 
   .featured-item img {
