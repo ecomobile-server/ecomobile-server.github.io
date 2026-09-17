@@ -69,7 +69,7 @@ import "../styles/header.css";
       </details>
 
       <a
-        href="https://forms.gle/NiqcbMifh4uLr6QB8"
+        href="https://forms.gle/fh1Es1hgc6aewru16"
         class="btn-primary"
         target="_blank"
         rel="noopener noreferrer">Ứng tuyển</a
@@ -97,7 +97,7 @@ import "../styles/header.css";
   // Active navigation state based on scroll position
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(
-    ".nav a[href^='#'], .nav-mobile-panel a[href^='#']"
+    ".nav a[href^='#'], .nav-mobile-panel a[href^='#']",
   );
 
   // Function to update active link
@@ -192,7 +192,8 @@ import "../styles/header.css";
         : false;
       const shouldShowCTA =
         mobileCTAQuery.matches &&
-        heroSection.getBoundingClientRect().bottom <= window.innerHeight * 0.1 &&
+        heroSection.getBoundingClientRect().bottom <=
+          window.innerHeight * 0.1 &&
         !hasReachedApplySection;
 
       header.classList.toggle("header-mobile-cta-visible", shouldShowCTA);
@@ -200,7 +201,9 @@ import "../styles/header.css";
     };
 
     updateMobileCTAVisibility();
-    window.addEventListener("scroll", updateMobileCTAVisibility, { passive: true });
+    window.addEventListener("scroll", updateMobileCTAVisibility, {
+      passive: true,
+    });
     window.addEventListener("resize", updateMobileCTAVisibility);
 
     if (mobileCTAQuery.addEventListener) {
