@@ -75,6 +75,8 @@
   align-items: center;
   gap: 12px;
   flex: 0 0 176px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .featured-item img {

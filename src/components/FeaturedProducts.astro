@@ -3,16 +3,56 @@ import "../styles/featured-products.css";
 
 // ponytail: icon files in /public/images/featured/ — rename/add when apps change
 const products = [
-  { name: "V9Show", image: "/images/featured/slideshow.png" },
-  { name: "AI Video Maker", image: "/images/featured/v9pic.png" },
-  { name: "AI Hairstyle", image: "/images/featured/noirify.png" },
-  { name: "FlyNote", image: "/images/featured/note.png" },
-  { name: "PixPDF", image: "/images/featured/pdf_reader.png" },
-  { name: "PixScan", image: "/images/featured/pdf_scanner.png" },
-  { name: "ThemePik", image: "/images/featured/icon_changer.png" },
-  { name: "QR Code", image: "/images/featured/qr_code.png" },
-  { name: "Eatzy", image: "/images/featured/food_scanner.png" },
-  { name: "SpeedZen", image: "/images/featured/speed_test.png" },
+  {
+    name: "V9Show",
+    image: "/images/featured/slideshow.png",
+    link: "https://play.google.com/store/apps/details?id=com.vtool.photovideomaker.slideshow.videoeditor",
+  },
+  {
+    name: "AI Video Maker",
+    image: "/images/featured/v9pic.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.photoeditor.videomaker",
+  },
+  {
+    name: "AI Hairstyle",
+    image: "/images/featured/noirify.png",
+    link: "https://apps.apple.com/us/app/noirify-ai-hairstyle-try-on/id6767138271?l=vi",
+  },
+  {
+    name: "FlyNote",
+    image: "/images/featured/note.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.note",
+  },
+  {
+    name: "PixPDF",
+    image: "/images/featured/pdf_reader.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.pdfreader",
+  },
+  {
+    name: "PixScan",
+    image: "/images/featured/pdf_scanner.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.ezscanner.scannertoscanpdf",
+  },
+  {
+    name: "ThemePik",
+    image: "/images/featured/icon_changer.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.iconchanger.themes",
+  },
+  {
+    name: "QR Code",
+    image: "/images/featured/qr_code.png",
+    link: "https://play.google.com/store/apps/details?id=com.vtool.qrcodereader.barcodescanner",
+  },
+  {
+    name: "Eatzy",
+    image: "/images/featured/food_scanner.png",
+    link: "https://play.google.com/store/apps/details?id=com.eco.foodscanner",
+  },
+  {
+    name: "SpeedZen",
+    image: "/images/featured/speed_test.png",
+    link: "https://play.google.com/store/apps/details?id=com.vtool.speedtest.speedcheck.internet",
+  },
 ];
 ---
 
@@ -23,7 +63,11 @@ const products = [
       <div class="featured-grid">
         {
           [...products, ...products].map((p) => (
-            <div class="featured-item">
+            <a
+              href={p.link}
+              class="featured-item"
+              target="_blank"
+              rel="noopener noreferrer">
               <img
                 src={p.image}
                 alt={p.name}
@@ -32,7 +76,7 @@ const products = [
                 loading="lazy"
               />
               <p class="featured-name">{p.name}</p>
-            </div>
+            </a>
           ))
         }
       </div>
