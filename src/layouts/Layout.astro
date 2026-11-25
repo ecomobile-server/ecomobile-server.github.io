@@ -18,6 +18,7 @@ const {
 } = Astro.props;
 
 const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
+const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
 const fbPixelId = import.meta.env.PUBLIC_FACEBOOK_PIXEL_ID;
 const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
 ---
@@ -57,17 +58,33 @@ const environment = import.meta.env.PUBLIC_ENVIRONMENT || 'development';
 
     <PostHog />
 
+    <!-- Google tag base (dataLayer + gtag) -->
+    {(ga4MeasurementId || googleAdsId) && environment === 'production' && (
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+      </script>
+    )}
+
     <!-- Google Analytics 4 -->
     {ga4MeasurementId && environment === 'production' && (
       <>
         <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}></script>
         <script is:inline define:vars={{ ga4MeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){window.dataLayer.push(arguments);};
-          window.gtag('js', new Date());
           window.gtag('config', ga4MeasurementId, {
             send_page_view: true, // Let GA4 handle page views with built-in traffic source tracking
           });
+        </script>
+      </>
+    )}
+
+    <!-- Google Ads (conversion tracking) -->
+    {googleAdsId && environment === 'production' && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
+        <script is:inline define:vars={{ googleAdsId }}>
+          window.gtag('config', googleAdsId);
         </script>
       </>
     )}
